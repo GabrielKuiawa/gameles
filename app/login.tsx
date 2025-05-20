@@ -10,7 +10,7 @@ export default function Login() {
   const router = useRouter();
 
   const handleLogin = () => {
-    // Procura o usuário no mock
+
     const user = users.find(
       user => user.username === username && user.password === password
     );
