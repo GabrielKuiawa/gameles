@@ -1,5 +1,5 @@
-import { View, Text, Image, StyleSheet } from "react-native";
-import React from "react";
+import { View, Image, StyleSheet, Pressable, Animated } from "react-native";
+import React, { useRef, useState } from "react";
 
 type Props = {
   title: string;
@@ -7,10 +7,32 @@ type Props = {
 };
 
 export default function Card({ image }: Props) {
+  const scale = useRef(new Animated.Value(1)).current;
+  const [pressed, setPressed] = useState(false);
+
+  const onPressIn = () => {
+    setPressed(true);
+    Animated.spring(scale, {
+      toValue: 0.95,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const onPressOut = () => {
+    setPressed(false);
+    Animated.spring(scale, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
-    <View style={styles.card}>
-      <Image  source={{ uri: image }} style={styles.image} />
-    </View>
+    <Pressable onPressIn={onPressIn} onPressOut={onPressOut}>
+      <Animated.View style={[styles.card, { transform: [{ scale }] }]}>
+        <Image source={{ uri: image }} style={styles.image} />
+        {pressed && <View style={styles.grayOverlay} />}
+      </Animated.View>
+    </Pressable>
   );
 }
 
@@ -19,12 +41,17 @@ const styles = StyleSheet.create({
     width: 165,
     height: 230,
     marginLeft: 10,
-  },
-  title: {
+    borderRadius: 12,
+    overflow: "hidden",
+    backgroundColor: "#181f2e",
   },
   image: {
     width: "100%",
-    height: "100%",    
+    height: "100%",
     resizeMode: "stretch",
+  },
+  grayOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(233, 226, 226, 0.5)",
   },
 });

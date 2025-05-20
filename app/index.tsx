@@ -84,10 +84,7 @@ export default function Index() {
             contentContainerStyle={styles.cardsContainer}
           >
             {jogos.map((game) => (
-              <Card
-                title={game.jogo}
-                image={game.imagem}
-              />
+              <Card title={game.jogo} image={game.imagem} />
             ))}
           </ScrollView>
         </View>
@@ -106,13 +103,24 @@ const styles = StyleSheet.create({
   },
   categoryTitle: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: "bold",
     marginLeft: 10,
     marginBottom: 10,
+    letterSpacing: 2,
+    textShadowColor: "#000",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 4,
+    borderLeftWidth: 4,
+    borderLeftColor: "#4f8cff",
+    paddingLeft: 16,
+    paddingRight: 32, 
+    backgroundColor: "rgba(79,140,255,0.08)",
+    borderRadius: 6,
+    alignSelf: "flex-start",
   },
   cardsContainer: {
-    paddingLeft: 10,
+    // paddingLeft: 10,
   },
   scrollView: {
     gap: 10,
