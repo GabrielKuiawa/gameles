@@ -4,9 +4,10 @@ import React, { useRef, useState } from "react";
 type Props = {
   title: string;
   image: string;
+  onPress?: () => void;
 };
 
-export default function Card({ image }: Props) {
+export default function Card({ image, onPress }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
   const [pressed, setPressed] = useState(false);
 
@@ -27,7 +28,7 @@ export default function Card({ image }: Props) {
   };
 
   return (
-    <Pressable onPressIn={onPressIn} onPressOut={onPressOut}>
+    <Pressable onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress}>
       <Animated.View style={[styles.card, { transform: [{ scale }] }]}>
         <Image source={{ uri: image }} style={styles.image} />
         {pressed && <View style={styles.grayOverlay} />}
