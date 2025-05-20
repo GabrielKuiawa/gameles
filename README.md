@@ -47,7 +47,7 @@ Uma aplicação mobile desenvolvida com React Native e Expo para explorar um cat
 
 1. Clone o repositório
 ```bash
-git clone [url-do-repositorio]
+git clone https://github.com/GabrielKuiawa/gameles.git
 ```
 
 2. Instale as dependências
