@@ -1,6 +1,7 @@
 {
   "Ação": [
     {
+      "id": 1,
       "jogo": "Far Cry 4",
       "imagem": "https://i.pinimg.com/736x/2d/7a/cd/2d7acdca3698bb3cad9b8021c5068cbd.jpg",
       "descricao": "Um jogo de tiro em primeira pessoa que se passa no Himalaia. Você assume o papel de Ajay Ghale em uma guerra civil fictícia.",
@@ -10,6 +11,7 @@
       "plataforma": ["PS4", "Xbox One", "PC"]
     },
     {
+      "id": 2,
       "jogo": "Resident Evil 4 Remake",
       "imagem": "https://i.pinimg.com/736x/03/7b/86/037b86e2b899e7ce4f0371e88be3ce1f.jpg",
       "descricao": "Remake do clássico survival horror. Leon Kennedy deve resgatar a filha do presidente em uma vila dominada por um culto parasita.",
@@ -19,6 +21,39 @@
       "plataforma": ["PS5", "Xbox Series X/S", "PC"]
     },
     {
+      "id": 3,
+      "jogo": "Ghost of Tsushima",
+      "imagem": "https://i.pinimg.com/736x/50/34/80/503480c0ec29fcb2597acde808441cc1.jpg",
+      "descricao": "Uma aventura épica no Japão feudal. Você é Jin Sakai, um samurai que deve proteger sua terra da invasão mongol.",
+      "ano": 2020,
+      "desenvolvedor": "Sucker Punch",
+      "nota": 9.3,
+      "plataforma": ["PS4", "PS5"]
+    }
+  ],
+  "Ação PS4": [
+    {
+      "id": 4,
+      "jogo": "Far Cry 4",
+      "imagem": "https://i.pinimg.com/736x/2d/7a/cd/2d7acdca3698bb3cad9b8021c5068cbd.jpg",
+      "descricao": "Um jogo de tiro em primeira pessoa que se passa no Himalaia. Você assume o papel de Ajay Ghale em uma guerra civil fictícia.",
+      "ano": 2014,
+      "desenvolvedor": "Ubisoft Montreal",
+      "nota": 8.5,
+      "plataforma": ["PS4", "Xbox One", "PC"]
+    },
+    {
+      "id": 5,
+      "jogo": "Resident Evil 4 Remake",
+      "imagem": "https://i.pinimg.com/736x/03/7b/86/037b86e2b899e7ce4f0371e88be3ce1f.jpg",
+      "descricao": "Remake do clássico survival horror. Leon Kennedy deve resgatar a filha do presidente em uma vila dominada por um culto parasita.",
+      "ano": 2023,
+      "desenvolvedor": "Capcom",
+      "nota": 9.3,
+      "plataforma": ["PS5", "Xbox Series X/S", "PC"]
+    },
+    {
+      "id": 6,
       "jogo": "Ghost of Tsushima",
       "imagem": "https://i.pinimg.com/736x/50/34/80/503480c0ec29fcb2597acde808441cc1.jpg",
       "descricao": "Uma aventura épica no Japão feudal. Você é Jin Sakai, um samurai que deve proteger sua terra da invasão mongol.",
@@ -30,6 +65,7 @@
   ],
   "RPG": [
     {
+      "id": 7,
       "jogo": "Cyberpunk 2077",
       "imagem": "https://i.pinimg.com/736x/4b/42/48/4b4248d8b20f85b5a3d22dbea2f17000.jpg",
       "descricao": "RPG em primeira pessoa ambientado em Night City, uma megalópole obcecada por poder e modificações corporais.",
@@ -39,6 +75,7 @@
       "plataforma": ["PS4", "PS5", "Xbox One", "Xbox Series X/S", "PC"]
     },
     {
+      "id": 8,
       "jogo": "God of War",
       "imagem": "https://i.pinimg.com/736x/86/01/3d/86013d73534ca07e46fd1735fec59c84.jpg",
       "descricao": "A nova jornada de Kratos e seu filho Atreus pela mitologia nórdica. Um dos jogos mais aclamados da geração.",
@@ -48,6 +85,39 @@
       "plataforma": ["PS4", "PS5", "PC"]
     },
     {
+      "id": 9,
+      "jogo": "Horizon Forbidden West",
+      "imagem": "https://i.pinimg.com/736x/3f/8e/ea/3f8eeae2a0222ceb3529fb3feb04f372.jpg",
+      "descricao": "Aloy retorna em uma nova aventura pós-apocalíptica, explorando as terras misteriosas do Oeste Proibido.",
+      "ano": 2022,
+      "desenvolvedor": "Guerrilla Games",
+      "nota": 9.0,
+      "plataforma": ["PS4", "PS5"]
+    }
+  ],
+  "PS4": [
+    {
+      "id": 10,
+      "jogo": "God of War",
+      "imagem": "https://i.pinimg.com/736x/86/01/3d/86013d73534ca07e46fd1735fec59c84.jpg",
+      "descricao": "A nova jornada de Kratos e seu filho Atreus pela mitologia nórdica. Um dos jogos mais aclamados da geração.",
+      "ano": 2018,
+      "desenvolvedor": "Santa Monica Studio",
+      "nota": 9.8,
+      "plataforma": ["PS4", "PS5", "PC"]
+    },
+    {
+      "id": 11,
+      "jogo": "Cyberpunk 2077",
+      "imagem": "https://i.pinimg.com/736x/4b/42/48/4b4248d8b20f85b5a3d22dbea2f17000.jpg",
+      "descricao": "RPG em primeira pessoa ambientado em Night City, uma megalópole obcecada por poder e modificações corporais.",
+      "ano": 2020,
+      "desenvolvedor": "CD Projekt RED",
+      "nota": 7.7,
+      "plataforma": ["PS4", "PS5", "Xbox One", "Xbox Series X/S", "PC"]
+    },
+    {
+      "id": 12,
       "jogo": "Horizon Forbidden West",
       "imagem": "https://i.pinimg.com/736x/3f/8e/ea/3f8eeae2a0222ceb3529fb3feb04f372.jpg",
       "descricao": "Aloy retorna em uma nova aventura pós-apocalíptica, explorando as terras misteriosas do Oeste Proibido.",
@@ -59,6 +129,7 @@
   ],
   "Corrida": [
     {
+      "id": 13,
       "jogo": "Forza Horizon 5",
       "imagem": "https://i.pinimg.com/736x/80/c7/ff/80c7fff86557368d4c807ab639a20922.jpg",
       "descricao": "Explore um mundo aberto vibrante no México com centenas de carros licenciados.",
@@ -68,6 +139,7 @@
       "plataforma": ["Xbox Series X/S", "PC"]
     },
     {
+      "id": 14,
       "jogo": "Gran Turismo 7",
       "imagem": "https://i.pinimg.com/736x/80/c7/ff/80c7fff86557368d4c807ab639a20922.jpg",
       "descricao": "O simulador de corridas definitivo com gráficos realistas e física precisa.",
@@ -77,6 +149,7 @@
       "plataforma": ["PS4", "PS5"]
     },
     {
+      "id": 15,
       "jogo": "Asphalt 9",
       "imagem": "https://i.pinimg.com/736x/80/c7/ff/80c7fff86557368d4c807ab639a20922.jpg",
       "descricao": "Jogo de corrida arcade com gráficos impressionantes e uma grande variedade de carros licenciados.",
@@ -84,6 +157,36 @@
       "desenvolvedor": "Gameloft",
       "nota": 8.2,
       "plataforma": ["iOS", "Android", "Windows", "Switch"]
+    },
+    {
+      "id": 16,
+      "jogo": "God of War",
+      "imagem": "https://i.pinimg.com/736x/86/01/3d/86013d73534ca07e46fd1735fec59c84.jpg",
+      "descricao": "A nova jornada de Kratos e seu filho Atreus pela mitologia nórdica. Um dos jogos mais aclamados da geração.",
+      "ano": 2018,
+      "desenvolvedor": "Santa Monica Studio",
+      "nota": 9.8,
+      "plataforma": ["PS4", "PS5", "PC"]
+    },
+    {
+      "id": 17,
+      "jogo": "Cyberpunk 2077",
+      "imagem": "https://i.pinimg.com/736x/4b/42/48/4b4248d8b20f85b5a3d22dbea2f17000.jpg",
+      "descricao": "RPG em primeira pessoa ambientado em Night City, uma megalópole obcecada por poder e modificações corporais.",
+      "ano": 2020,
+      "desenvolvedor": "CD Projekt RED",
+      "nota": 7.7,
+      "plataforma": ["PS4", "PS5", "Xbox One", "Xbox Series X/S", "PC"]
+    },
+    {
+      "id": 18,
+      "jogo": "Horizon Forbidden West",
+      "imagem": "https://i.pinimg.com/736x/3f/8e/ea/3f8eeae2a0222ceb3529fb3feb04f372.jpg",
+      "descricao": "Aloy retorna em uma nova aventura pós-apocalíptica, explorando as terras misteriosas do Oeste Proibido.",
+      "ano": 2022,
+      "desenvolvedor": "Guerrilla Games",
+      "nota": 9.0,
+      "plataforma": ["PS4", "PS5"]
     }
   ]
 }

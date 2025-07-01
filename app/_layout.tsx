@@ -37,7 +37,7 @@ function RootLayoutNav() {
         headerTransparent: true,
         headerBlurEffect: 'dark',
         headerRight: () => (
-          <Pressable onPress={handleLogout} style={{ marginRight: 15 }}>
+          <Pressable testID="logout-icon" onPress={handleLogout} style={{ marginRight: 15 }}>
             <Ionicons name="log-out-outline" size={24} color="#fff" />
           </Pressable>
         ),

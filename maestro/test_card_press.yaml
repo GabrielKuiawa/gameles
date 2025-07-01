@@ -1,0 +1,37 @@
+appId: com.gameles.mobile
+---
+- openLink: exp://192.168.3.103:8081
+- assertVisible: "Gameles"
+- inputText: 
+    text: "admin"
+    into: "Usuário"
+- tapOn: "Senha"
+- inputText: 
+    text: "123456"
+    into: "Senha"
+- tapOn: "Entrar"
+
+- assertVisible: "Jogos"
+
+- tapOn:
+    id: "card-pressable-1"
+
+- assertVisible: "Far Cry 4"
+- assertVisible: "Um jogo de tiro em primeira pessoa que se passa no Himalaia. Você assume o papel de Ajay Ghale em uma guerra civil fictícia."
+- assertVisible: "Ano"
+- assertVisible: "2014"
+- assertVisible: "Desenvolvedor"
+- assertVisible: "Ubisoft Montreal"
+- assertVisible: "Nota"
+- assertVisible: "8.5"
+- assertVisible: "Plataformas"
+- assertVisible: "PS4,Xbox One,PC"
+
+- back
+
+- assertVisible: "Jogos"
+
+- tapOn:
+    id: "logout-icon" 
+- assertVisible: "Deslogar"
+- tapOn: "Deslogar"

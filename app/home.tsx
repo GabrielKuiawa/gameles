@@ -23,8 +23,8 @@ export default function Home() {
             contentContainerStyle={styles.cardsContainer}
             renderItem={({ item }) => (
               <Card
-                title={item.jogo}
                 image={item.imagem}
+                id={item.id}
                 onPress={() => {
                   router.push({
                     pathname: "/GameDetails",

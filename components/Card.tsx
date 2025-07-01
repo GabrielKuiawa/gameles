@@ -2,12 +2,12 @@ import { View, Image, StyleSheet, Pressable, Animated } from "react-native";
 import React, { useRef, useState } from "react";
 
 type Props = {
-  title: string;
   image: string;
+  id:number;
   onPress?: () => void;
 };
 
-export default function Card({ image, onPress }: Props) {
+export default function Card({id, image, onPress }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
   const [pressed, setPressed] = useState(false);
 
@@ -28,9 +28,18 @@ export default function Card({ image, onPress }: Props) {
   };
 
   return (
-    <Pressable onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress}>
+    <Pressable
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      onPress={onPress}
+      testID={`card-pressable-${id}`}
+    >
       <Animated.View style={[styles.card, { transform: [{ scale }] }]}>
-        <Image source={{ uri: image }} style={styles.image} />
+        <Image
+          testID="card-image"
+          source={{ uri: image }}
+          style={styles.image}
+        />
         {pressed && <View style={styles.grayOverlay} />}
       </Animated.View>
     </Pressable>
