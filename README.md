@@ -25,17 +25,14 @@ Ambos são importantes para garantir a qualidade e a confiabilidade de aplicaç�
 
 ## Screenshots
 
-### Tela de Login
-<img src="./assets/screenshots/login.png" width="300" alt="Tela de Login"/>
+| Tela de Login | Lista de Jogos |
+|---------------|----------------|
+| <img src="https://raw.githubusercontent.com/GabrielKuiawa/gameles/refs/heads/master/assets/screenshots/login.png" width="300"/> | <img src="https://raw.githubusercontent.com/GabrielKuiawa/gameles/refs/heads/master/assets/screenshots/home.png" width="300"/> |
 
-### Lista de Jogos
-<img src="./assets/screenshots/home.png" width="300" alt="Lista de Jogos"/>
+| Detalhes do Jogo | Menu de Logout |
+|------------------|----------------|
+| <img src="https://raw.githubusercontent.com/GabrielKuiawa/gameles/refs/heads/master/assets/screenshots/details.png" width="300"/> | <img src="https://raw.githubusercontent.com/GabrielKuiawa/gameles/refs/heads/master/assets/screenshots/logout.png" width="300"/> |
 
-### Detalhes do Jogo
-<img src="./assets/screenshots/details.png" width="300" alt="Detalhes do Jogo"/>
-
-### Menu de Logout
-<img src="./assets/screenshots/logout.png" width="300" alt="Menu de Logout"/>
 
 ## Funcionalidades
 
