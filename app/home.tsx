@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, StyleSheet, FlatList } from "react-native";
 import React, { use, useEffect, useState } from "react";
-import Card from "@/components/Card";
+import { API_KEY, API_URL,  } from '@env';
 import { useRouter } from "expo-router";
 import axios from "axios";
 import GameSection from "@/components/GameSection";
@@ -18,7 +18,7 @@ export default function Home() {
     const getData = async () => {
       try {
         const response = await axios.get(
-          "https://api.rawg.io/api/genres?key=05897041ba5f4518ab79a51b485aa1f5&page=2&page_size=5"
+          `${API_URL}genres?key=${API_KEY}&page=2&page_size=5`
         );
         const json = await response.data;
         setData(json.results);

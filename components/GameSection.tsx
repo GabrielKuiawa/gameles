@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./Card";
+import { API_KEY, API_URL } from "@env";
 
 type GameSectionProps = {
   id: number;
@@ -15,7 +16,7 @@ export default function GameSection({ id, name }: GameSectionProps) {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `https://api.rawg.io/api/games?key=05897041ba5f4518ab79a51b485aa1f5&genres=${id}&page_size=5`
+          `${API_URL}games?key=${API_KEY}&genres=${id}&page_size=3`
         );
         const json = await response.data;
         setData(json.results);
