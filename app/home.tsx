@@ -3,24 +3,22 @@ import React, { use, useEffect, useState } from "react";
 import Card from "@/components/Card";
 import { useRouter } from "expo-router";
 import axios from "axios";
+import GameSection from "@/components/GameSection";
 type Genero = {
   id: number;
   name: string;
-  slug: string;
-  games_count: number;
-  image_background: string;
 };
 
 export default function Home() {
   const router = useRouter();
   const [data, setData] = useState<Genero[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          "https://api.rawg.io/api/genres?key=05897041ba5f4518ab79a51b485aa1f5"
+          "https://api.rawg.io/api/genres?key=05897041ba5f4518ab79a51b485aa1f5&page=2&page_size=5"
         );
         const json = await response.data;
         setData(json.results);
@@ -40,49 +38,14 @@ export default function Home() {
           <Text>Carregando...</Text>
         ) : (
           data.map((item) => (
-            <Text style={styles.categoryTitle} key={item.id}>
-              {item.name}
-            </Text>
+            <GameSection
+              key={item.id}
+              id={item.id}
+              name={item.name}
+            ></GameSection>
           ))
         )}
       </View>
-      {/* {Object.entries(categories).map(([categoria, jogos]) => (
-        <View key={categoria} style={styles.categoryContainer}>
-          <Text style={styles.categoryTitle}>{categoria}</Text>
-          <FlatList
-            data={jogos}
-            keyExtractor={(item, idx) => `${item.jogo}-${idx}`}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.cardsContainer}
-            renderItem={({ item }) => (
-              <Card
-                image={item.imagem}
-                id={item.id}
-                onPress={() => {
-                  router.push({
-                    pathname: "/GameDetails",
-                    params: {
-                      jogo: item.jogo,
-                      imagem: item.imagem,
-                      descricao: item.descricao,
-                      ano: item.ano,
-                      desenvolvedor: item.desenvolvedor,
-                      nota: item.nota,
-                      plataforma: item.plataforma,
-                    },
-                  });
-                }}
-              />
-            )}
-            style={styles.scrollView}
-            nestedScrollEnabled
-            removeClippedSubviews
-            maxToRenderPerBatch={10}
-            initialNumToRender={5}
-          />
-        </View>
-      ))} */}
     </ScrollView>
   );
 }
@@ -94,27 +57,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: "#0a0f1c",
     paddingVertical: 10,
-  },
-  categoryContainer: {
-    marginBottom: 20,
-  },
-  categoryTitle: {
-    color: "#fff",
-    fontSize: 22,
-    fontWeight: "bold",
-    marginLeft: 10,
-    marginBottom: 10,
-    letterSpacing: 2,
-    textShadowColor: "#000",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4,
-    borderLeftWidth: 4,
-    borderLeftColor: "#4f8cff",
-    paddingLeft: 16,
-    paddingRight: 20,
-    backgroundColor: "rgba(79,140,255,0.08)",
-    borderRadius: 6,
-    alignSelf: "flex-start",
   },
   cardsContainer: {
     // paddingLeft: 10,

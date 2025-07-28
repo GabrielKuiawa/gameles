@@ -1,13 +1,15 @@
-import { View, Image, StyleSheet, Pressable, Animated } from "react-native";
+import { View, Image, StyleSheet, Pressable, Animated, Dimensions } from "react-native";
 import React, { useRef, useState } from "react";
 
-type Props = {
+type CardProps = {
   image: string;
   id:number;
   onPress?: () => void;
 };
 
-export default function Card({id, image, onPress }: Props) {
+const { width } = Dimensions.get('window'); // pega a largura da tela
+
+export default function Card({id, image, onPress }: CardProps) {
   const scale = useRef(new Animated.Value(1)).current;
   const [pressed, setPressed] = useState(false);
 
@@ -48,8 +50,8 @@ export default function Card({id, image, onPress }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    width: 165,
-    height: 230,
+    width: (width / 2)  - 30,
+    height: 200,
     marginLeft: 10,
     borderRadius: 12,
     overflow: "hidden",
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    resizeMode: "stretch",
+
   },
   grayOverlay: {
     ...StyleSheet.absoluteFillObject,
