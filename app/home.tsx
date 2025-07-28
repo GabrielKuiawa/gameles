@@ -1,18 +1,52 @@
 import { View, Text, ScrollView, StyleSheet, FlatList } from "react-native";
-import React from "react";
+import React, { use, useEffect, useState } from "react";
 import Card from "@/components/Card";
 import { useRouter } from "expo-router";
-
-import gamesCategorize from "@/mock/games_categorize.json";
-
-const categories = gamesCategorize;
+import axios from "axios";
+type Genero = {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+};
 
 export default function Home() {
   const router = useRouter();
+  const [data, setData] = useState<Genero[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.rawg.io/api/genres?key=05897041ba5f4518ab79a51b485aa1f5"
+        );
+        const json = await response.data;
+        setData(json.results);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+  }, []);
 
   return (
     <ScrollView style={styles.mainContainer}>
-      {Object.entries(categories).map(([categoria, jogos]) => (
+      <View style={styles.marginTop}>
+        {loading ? (
+          <Text>Carregando...</Text>
+        ) : (
+          data.map((item) => (
+            <Text style={styles.categoryTitle} key={item.id}>
+              {item.name}
+            </Text>
+          ))
+        )}
+      </View>
+      {/* {Object.entries(categories).map(([categoria, jogos]) => (
         <View key={categoria} style={styles.categoryContainer}>
           <Text style={styles.categoryTitle}>{categoria}</Text>
           <FlatList
@@ -48,12 +82,15 @@ export default function Home() {
             initialNumToRender={5}
           />
         </View>
-      ))}
+      ))} */}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  marginTop: {
+    marginTop: 30,
+  },
   mainContainer: {
     backgroundColor: "#0a0f1c",
     paddingVertical: 10,
