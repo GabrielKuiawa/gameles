@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./Card";
-import { API_KEY, API_URL } from "@env";
+import { API_KEY, API_URL } from "@/env";
 
 type GameSectionProps = {
   id: number;

@@ -1,9 +1,9 @@
 import { View, Text, ScrollView, StyleSheet, FlatList } from "react-native";
-import React, { use, useEffect, useState } from "react";
-import { API_KEY, API_URL,  } from '@env';
 import { useRouter } from "expo-router";
-import axios from "axios";
 import GameSection from "@/components/GameSection";
+import useFetch from "@/hooks/useFetch";
+import { API_KEY, API_URL } from "@/env";
+
 type Genero = {
   id: number;
   name: string;
@@ -11,25 +11,14 @@ type Genero = {
 
 export default function Home() {
   const router = useRouter();
-  const [data, setData] = useState<Genero[]>([]);
-  const [loading, setLoading] = useState(false);
+  const { data, loading, error } = useFetch<Genero[]>(
+    `${API_URL}genres?key=${API_KEY}&page=2&page_size=5`
+  );
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get(
-          `${API_URL}genres?key=${API_KEY}&page=2&page_size=5`
-        );
-        const json = await response.data;
-        setData(json.results);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getData();
-  }, []);
+  console.log(error);
+
+  if (loading) return <Text>Carregando...</Text>;
+  if (error) return <Text>Erro ao carregar</Text>;
 
   return (
     <ScrollView style={styles.mainContainer}>
@@ -37,7 +26,7 @@ export default function Home() {
         {loading ? (
           <Text>Carregando...</Text>
         ) : (
-          data.map((item) => (
+          data?.map((item) => (
             <GameSection
               key={item.id}
               id={item.id}
@@ -57,11 +46,5 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: "#0a0f1c",
     paddingVertical: 10,
-  },
-  cardsContainer: {
-    // paddingLeft: 10,
-  },
-  scrollView: {
-    gap: 10,
-  },
+  }
 });
