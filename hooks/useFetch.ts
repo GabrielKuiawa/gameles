@@ -12,7 +12,7 @@ export default function useFetch<T>(
     const fetchData = async () => {
       try {
         const response = await axios.get(url);
-        setData(response.data.results);
+        setData(response.data);
       } catch (err) {
         setError(err as Error);
       } finally {

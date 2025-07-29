@@ -2,18 +2,29 @@ import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "@/types/navigation";
+import useFetch from "@/hooks/useFetch";
+import { API_KEY, API_URL } from "@/env";
+import { Game } from "@/types/Game";
 
 type GameDetailsRouteProp = RouteProp<RootStackParamList, 'GameDetails'>;
 
 export default function GameDetails() {
   const route = useRoute<GameDetailsRouteProp>();
-  const { jogo, imagem, descricao, ano, desenvolvedor, nota, plataforma } = route.params;
+  const { id } = route.params;
 
+    const { data, loading, error } = useFetch<Game>(
+      `${API_URL}games/${id}?key=${API_KEY}`
+    );
+  
+    if (loading) return <Text>Carregando...</Text>;
+    if (error) return <Text>Erro ao carregar</Text>;
+    console.log(data?.name);
+    
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: imagem }} style={styles.image} />
+      {/* <Image source={{ uri: imagem }} style={styles.image} />
       <View style={styles.content}>
-        <Text style={styles.title}>{jogo}</Text>
+        <Text style={styles.title}>{data.name}</Text>
         
         {descricao && (
           <Text style={styles.description}>{descricao}</Text>
@@ -52,7 +63,7 @@ export default function GameDetails() {
             </View>
           )}
         </View>
-      </View>
+      </View> */}
     </ScrollView>
   );
 }
