@@ -6,64 +6,72 @@ import useFetch from "@/hooks/useFetch";
 import { API_KEY, API_URL } from "@/env";
 import { Game } from "@/types/Game";
 
-type GameDetailsRouteProp = RouteProp<RootStackParamList, 'GameDetails'>;
+type GameDetailsRouteProp = RouteProp<RootStackParamList, "GameDetails">;
 
 export default function GameDetails() {
   const route = useRoute<GameDetailsRouteProp>();
   const { id } = route.params;
 
-    const { data, loading, error } = useFetch<Game>(
-      `${API_URL}games/${id}?key=${API_KEY}`
-    );
-  
-    if (loading) return <Text>Carregando...</Text>;
-    if (error) return <Text>Erro ao carregar</Text>;
-    console.log(data?.name);
-    
+  const { data, loading, error } = useFetch<Game>(
+    `${API_URL}games/${id}?key=${API_KEY}`
+  );
+
+  if (loading) return <Text>Carregando...</Text>;
+  if (error) return <Text>Erro ao carregar</Text>;
+  console.log(data?.name);
+
   return (
     <ScrollView style={styles.container}>
-      {/* <Image source={{ uri: imagem }} style={styles.image} />
+      <Image source={{ uri: data?.background_image }} style={styles.image} />
       <View style={styles.content}>
-        <Text style={styles.title}>{data.name}</Text>
-        
-        {descricao && (
-          <Text style={styles.description}>{descricao}</Text>
+        <Text style={styles.title}>{data?.name}</Text>
+
+        {data?.description_raw && (
+          <Text
+            style={styles.description}
+            numberOfLines={4}
+            ellipsizeMode="tail"
+          >
+            {data.description_raw}
+          </Text>
         )}
 
         <View style={styles.infoContainer}>
-          {ano && (
+          {data?.released && (
             <View style={styles.infoItem}>
               <Text style={styles.infoLabel}>Ano</Text>
-              <Text style={styles.infoValue}>{ano}</Text>
+              <Text style={styles.infoValue}>{data?.released}</Text>
             </View>
           )}
 
-          {desenvolvedor && (
+          {data?.developers?.name && (
             <View style={styles.infoItem}>
               <Text style={styles.infoLabel}>Desenvolvedor</Text>
-              <Text style={styles.infoValue}>{desenvolvedor}</Text>
+              <Text style={styles.infoValue}>{data?.developers?.name}</Text>
             </View>
           )}
 
-          {nota && (
+          {data?.rating && (
             <View style={styles.infoItem}>
               <Text style={styles.infoLabel}>Nota</Text>
-              <Text style={[styles.infoValue, styles.nota]}>{nota}</Text>
+              <Text style={[styles.infoValue, styles.nota]}>
+                {data?.rating}
+              </Text>
             </View>
           )}
 
-          {plataforma && (
+          {data?.platforms && (
             <View style={styles.infoItem}>
               <Text style={styles.infoLabel}>Plataformas</Text>
               <View style={styles.plataformaContainer}>
                 <Text style={[styles.infoValue, styles.plataformaText]}>
-                  {Array.isArray(plataforma) ? plataforma.join(", ") : plataforma}
+                  {data.platforms.map((p) => p.platform.name).join(", ")}
                 </Text>
               </View>
             </View>
           )}
         </View>
-      </View> */}
+      </View>
     </ScrollView>
   );
 }

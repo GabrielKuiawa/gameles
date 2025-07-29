@@ -1,10 +1,18 @@
-export  type Game = {
-    id: number;
+export type Game = {
+  id: number;
+  name: string;
+  background_image: string;
+  description_raw?: string;
+  released?: number;
+  developers?: {
     name: string;
-    image: string;
-    description?: string;
-    year?: number;
-    developer?: string;
-    rating?: number;
-    platforms?: string[];
-}
+  };
+  rating?: number;
+  platforms?: {
+    platform: {
+      id: number;
+      name: string;
+      slug: string;
+    };
+  }[];
+};
