@@ -3,20 +3,15 @@ import { useRouter } from "expo-router";
 import GameSection from "@/components/GameSection";
 import useFetch from "@/hooks/useFetch";
 import { API_KEY, API_URL } from "@/env";
+import { Genres } from "@/types/Genres";
 
-type Genero = {
-  id: number;
-  name: string;
-};
 
 export default function Home() {
   const router = useRouter();
-  const { data, loading, error } = useFetch<Genero[]>(
+  const { data, loading, error } = useFetch<Genres[]>(
     `${API_URL}genres?key=${API_KEY}&page=2&page_size=5`
   );
-
-  console.log(error);
-
+  
   if (loading) return <Text>Carregando...</Text>;
   if (error) return <Text>Erro ao carregar</Text>;
 

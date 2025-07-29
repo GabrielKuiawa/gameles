@@ -2,7 +2,7 @@ import { View, Image, StyleSheet, Pressable, Animated, Dimensions } from "react-
 import React, { useRef, useState } from "react";
 
 type CardProps = {
-  image: string;
+  image?: string;
   id:number;
   onPress?: () => void;
 };

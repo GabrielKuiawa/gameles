@@ -1,33 +1,18 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Card from "./Card";
 import { API_KEY, API_URL } from "@/env";
+import { Genres } from "@/types/Genres";
+import useFetch from "@/hooks/useFetch";
 
-type GameSectionProps = {
-  id: number;
-  name: string;
-};
+export default function GameSection({ id, name }: Genres) {
+  const { data, loading, error } = useFetch<Genres[]>(
+    `${API_URL}games?key=${API_KEY}&genres=${id}&page_size=3`
+  );
 
-export default function GameSection({ id, name }: GameSectionProps) {
-  const [data, setData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get(
-          `${API_URL}games?key=${API_KEY}&genres=${id}&page_size=3`
-        );
-        const json = await response.data;
-        setData(json.results);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getData();
-  }, []);
+  if (loading) return <Text>Carregando...</Text>;
+  if (error) return <Text>Erro ao carregar</Text>;
+
   return (
     <View style={styles.categoryContainer}>
       <Text style={styles.categoryTitle}>{name}</Text>
