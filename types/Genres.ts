@@ -5,5 +5,7 @@ export type Genre = {
 };
 
 export type GenresResponse = {
+  next?: string;
+  previous?: string;
   results: Genre[];
 };

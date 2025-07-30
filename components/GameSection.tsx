@@ -11,8 +11,6 @@ export default function GameSection({ id, name }: Genre) {
     `${API_URL}games?key=${API_KEY}&genres=${id}&page_size=3`
   );
 
-  if (loading) return <Text>Carregando...</Text>;
-  if (error) return <Text>Erro ao carregar</Text>;
   return (
     <View style={styles.categoryContainer}>
       <Text style={styles.categoryTitle}>{name}</Text>
