@@ -5,21 +5,24 @@ import { API_KEY, API_URL } from "@/env";
 import { Genre, GenresResponse } from "@/types/Genres";
 import useFetch from "@/hooks/useFetch";
 import { router } from "expo-router";
+import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 
 export default function GameSection({ id, name }: Genre) {
-  const { data, loading, error } = useFetch<GenresResponse>(
-    `${API_URL}games?key=${API_KEY}&genres=${id}&page_size=3`
+  const { data: allData, loadMore } = useInfiniteFetch<Genre>(
+    `${API_URL}games?key=${API_KEY}&genres=${id}&page_size=5`
   );
 
   return (
     <View style={styles.categoryContainer}>
       <Text style={styles.categoryTitle}>{name}</Text>
       <FlatList
-        data={data?.results ?? []}
+        data={allData}
         keyExtractor={(item) => item.id.toString()}
         horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.scrollView}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.5}
         renderItem={({ item }) => (
           <Card
             id={item.id}
@@ -27,8 +30,8 @@ export default function GameSection({ id, name }: Genre) {
             onPress={() => {
               router.push({
                 pathname: "/GameDetails",
-                params: { id: item.id}
-              })
+                params: { id: item.id },
+              });
             }}
           />
         )}

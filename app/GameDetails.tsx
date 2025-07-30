@@ -1,7 +1,6 @@
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
-
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "@/types/navigation";
+import { RootStackParamList } from "@/types/Navigation";
 import useFetch from "@/hooks/useFetch";
 import { API_KEY, API_URL } from "@/env";
 import { Game } from "@/types/Game";
@@ -12,12 +11,10 @@ export default function GameDetails() {
   const route = useRoute<GameDetailsRouteProp>();
   const { id } = route.params;
 
-  const { data, loading, error } = useFetch<Game>(
+  const { data } = useFetch<Game>(
     `${API_URL}games/${id}?key=${API_KEY}`
   );
 
-  if (loading) return <Text>Carregando...</Text>;
-  if (error) return <Text>Erro ao carregar</Text>;
   console.log(data?.name);
 
   return (
