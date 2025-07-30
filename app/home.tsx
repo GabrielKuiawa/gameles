@@ -5,9 +5,7 @@ import { Genre } from "@/types/Genres";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 
 export default function Home() {
-  const { data: allData, loadMore } = useInfiniteFetch<Genre>(
-    `${API_URL}genres?key=${API_KEY}&page_size=5`
-  );
+  const { data: allData, loadMore } = useInfiniteFetch<Genre>(`${API_URL}genres?key=${API_KEY}&page_size=5`);
 
   return (
     <View style={styles.mainContainer}>

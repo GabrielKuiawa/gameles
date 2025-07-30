@@ -4,9 +4,9 @@ export type Game = {
   background_image: string;
   description_raw?: string;
   released?: number;
-  developers?: {
+  developers?: [{
     name: string;
-  };
+  }];
   rating?: number;
   platforms?: {
     platform: {

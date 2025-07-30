@@ -11,11 +11,8 @@ export default function GameDetails() {
   const route = useRoute<GameDetailsRouteProp>();
   const { id } = route.params;
 
-  const { data } = useFetch<Game>(
-    `${API_URL}games/${id}?key=${API_KEY}`
-  );
-
-  console.log(data?.name);
+  const { data } = useFetch<Game>(`${API_URL}games/${id}?key=${API_KEY}`);
+  console.log(`${API_URL}games/${id}?key=${API_KEY}`);
 
   return (
     <ScrollView style={styles.container}>
@@ -41,10 +38,12 @@ export default function GameDetails() {
             </View>
           )}
 
-          {data?.developers?.name && (
+          {data?.developers && data.developers.length > 0 && (
             <View style={styles.infoItem}>
-              <Text style={styles.infoLabel}>Desenvolvedor</Text>
-              <Text style={styles.infoValue}>{data?.developers?.name}</Text>
+              <Text style={styles.infoLabel}>Desenvolvedores</Text>
+              <Text style={styles.infoValue}>
+                {data.developers[0].name}
+              </Text>
             </View>
           )}
 

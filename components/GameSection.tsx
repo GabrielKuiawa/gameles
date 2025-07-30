@@ -8,9 +8,7 @@ import { router } from "expo-router";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 
 export default function GameSection({ id, name }: Genre) {
-  const { data: allData, loadMore } = useInfiniteFetch<Genre>(
-    `${API_URL}games?key=${API_KEY}&genres=${id}&page_size=5`
-  );
+  const { data: allData, loadMore } = useInfiniteFetch<Genre>(`${API_URL}games?key=${API_KEY}&genres=${id}&page_size=5`);
 
   return (
     <View style={styles.categoryContainer}>
@@ -19,7 +17,6 @@ export default function GameSection({ id, name }: Genre) {
         data={allData}
         keyExtractor={(item) => item.id.toString()}
         horizontal
-        showsHorizontalScrollIndicator={false}
         style={styles.scrollView}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
