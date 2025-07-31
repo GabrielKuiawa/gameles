@@ -1,12 +1,15 @@
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, ActivityIndicator } from "react-native";
 import GameSection from "@/components/GameSection";
 import { API_KEY, API_URL } from "@/env";
 import { Genre } from "@/types/Genres";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
+import { colors } from "@/styles/colors";
 
 export default function Home() {
-  const { data: allData, loadMore } = useInfiniteFetch<Genre>(`${API_URL}genres?key=${API_KEY}&page_size=5`);
-
+  const { data: allData, loadMore,loading } = useInfiniteFetch<Genre>(
+    `${API_URL}genres?key=${API_KEY}&page_size=5`
+  );
+  
   return (
     <View style={styles.mainContainer}>
       <FlatList
@@ -16,6 +19,9 @@ export default function Home() {
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
         contentContainerStyle={{ paddingBottom: 80 }}
+        ListFooterComponent={
+          loading ? <ActivityIndicator size="small" color="#000" /> : null
+        }
       />
     </View>
   );
@@ -23,7 +29,7 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: "#0a0f1c",
+    backgroundColor: colors.primary,
     paddingVertical: 10,
     marginTop: 30,
     height: "100%",
