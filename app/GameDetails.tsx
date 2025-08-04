@@ -16,7 +16,14 @@ export default function GameDetails() {
 
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: data?.background_image }} style={styles.image} />
+      <View style={styles.imageContainer}>
+        <Image
+          source={{ uri: data?.background_image_additional }}
+          style={styles.imageAdditional}
+        />
+        <Image source={{ uri: data?.background_image }} style={styles.background_image} />
+      </View>
+
       <View style={styles.content}>
         <Text style={styles.title}>{data?.name}</Text>
 
@@ -41,9 +48,7 @@ export default function GameDetails() {
           {data?.developers && data.developers.length > 0 && (
             <View style={styles.infoItem}>
               <Text style={styles.infoLabel}>Desenvolvedores</Text>
-              <Text style={styles.infoValue}>
-                {data.developers[0].name}
-              </Text>
+              <Text style={styles.infoValue}>{data.developers[0].name}</Text>
             </View>
           )}
 
@@ -78,11 +83,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#0a0f1c",
     paddingTop: 0,
   },
-  image: {
+  imageContainer: {
+    alignItems: 'center',  
+    justifyContent: 'flex-end', 
+    marginBottom: 50,
+    marginTop: 100,
+    position: 'relative', 
+  },
+  imageAdditional: {
     width: "100%",
-    height: 300,
-    resizeMode: "cover",
-    marginTop: 80,
+    height: 320,
+  },
+  background_image: {
+    borderRadius: 15,
+    height: 275,
+    position: "absolute",
+    bottom: -50,    
+    width: 275,
   },
   content: {
     padding: 20,
