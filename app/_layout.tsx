@@ -3,6 +3,7 @@ import { Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { ActionSheetProvider, useActionSheet } from '@expo/react-native-action-sheet';
+import "../global.css"
 
 function RootLayoutNav() {
   const router = useRouter();

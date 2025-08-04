@@ -3,7 +3,6 @@ import GameSection from "@/components/GameSection";
 import { API_KEY, API_URL } from "@/env";
 import { Genre } from "@/types/Genres";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
-import { colors } from "@/styles/colors";
 
 export default function Home() {
   const { data: allData, loadMore,loading } = useInfiniteFetch<Genre>(
@@ -11,7 +10,7 @@ export default function Home() {
   );
   
   return (
-    <View style={styles.mainContainer}>
+    <View className="bg-slate-900 ps-1 mt-10 pt-5 h-full">
       <FlatList
         data={allData}
         keyExtractor={(item) => item.id.toString()}
@@ -26,12 +25,3 @@ export default function Home() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    backgroundColor: colors.primary,
-    paddingVertical: 10,
-    marginTop: 30,
-    height: "100%",
-  },
-});
