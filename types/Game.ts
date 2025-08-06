@@ -16,4 +16,12 @@ export type Game = {
       slug: string;
     };
   }[];
+  genres?: {
+    id: number;
+    name: string;
+  }[];
+  tags?: {
+    id: number;
+    name: string;
+  }[];
 };

@@ -8,6 +8,11 @@ export function useInfiniteFetch<T>(initialUrl: string) {
   const { data, loading, error } = useFetch<PaginatedResponse<T>>(url);
 
   useEffect(() => {
+    setUrl(initialUrl);
+    setItems([]);
+  }, [initialUrl]);
+
+  useEffect(() => {
     if (!data?.results) return;
 
     const isFirstPage = !data.previous;
@@ -16,7 +21,9 @@ export function useInfiniteFetch<T>(initialUrl: string) {
       if (isFirstPage) return data.results;
 
       const existingIds = new Set(prev.map((item: any) => item.id));
-      const newItems = data.results.filter((item: any) => !existingIds.has(item.id));
+      const newItems = data.results.filter(
+        (item: any) => !existingIds.has(item.id)
+      );
 
       return [...prev, ...newItems];
     });
@@ -28,5 +35,5 @@ export function useInfiniteFetch<T>(initialUrl: string) {
     }
   };
 
-  return {data: items,loading,error,loadMore,};
+  return { data: items, loading, error, loadMore };
 }

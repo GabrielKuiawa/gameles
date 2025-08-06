@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import GameSection from "@/components/GameSection";
 import { API_KEY, API_URL } from "@/env";
 import { Genre } from "@/types/Genres";
@@ -10,11 +10,11 @@ export default function Home() {
   );
   
   return (
-    <View className="bg-slate-900 ps-1 mt-10 pt-5 h-full">
+    <View className="bg-slate-900 ps-5 pt-5 h-full">
       <FlatList
         data={allData}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <GameSection id={item.id} name={item.name} />}
+        renderItem={({ item }) => <GameSection id={item.id} name={item.name} pathParameters="genres" />}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
         contentContainerStyle={{ paddingBottom: 80 }}

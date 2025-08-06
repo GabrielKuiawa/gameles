@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import Card from "./Card";
 import { API_KEY, API_URL } from "@/env";
 import { Genre } from "@/types/Genres";
@@ -7,24 +7,26 @@ import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 import Title from "./Title";
 import { useRef } from "react";
 
-export default function GameSection({ id, name }: Genre) {
+export default function GameSection({ id, name , pathParameters}: Genre) {
   const { data: allData, loadMore } = useInfiniteFetch<Genre>(
-    `${API_URL}games?key=${API_KEY}&genres=${id}&page_size=5`
+    `${API_URL}games?key=${API_KEY}&${pathParameters}=${id}&page_size=5`
   );
+  console.log(`${API_URL}games?key=${API_KEY}&${pathParameters}=${id}&page_size=5`);
+  
   const isNavigating = useRef(false);
   return (
-    <View style={styles.categoryContainer}>
+    <View className="mb-8">
       {/* <Title name={name} /> */}
       <FlatList
         data={allData}
         keyExtractor={(item) => item.id.toString()}
+        ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
         horizontal
-        style={styles.scrollView}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
         renderItem={({ item }) => (
           <Card
-            id={item.id}
+            id={parseInt(item.id)}
             image={item.background_image}
             name={item.name}
             year={item.released}
@@ -38,7 +40,7 @@ export default function GameSection({ id, name }: Genre) {
                 pathname: "/GameDetails",
                 params: { id: item.id },
               });
-              
+
               setTimeout(() => {
                 isNavigating.current = false;
               }, 1000);
@@ -49,13 +51,3 @@ export default function GameSection({ id, name }: Genre) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  scrollView: {
-    gap: 10,
-  },
-  categoryContainer: {
-    marginBottom: 20,
-    paddingStart: 8,
-  },
-});
