@@ -36,7 +36,7 @@ export default function GameDetails() {
   }, [data?.genres]);
 
   return (
-    <ScrollView className="flex-1 bg-slate-900">
+    <ScrollView className="flex-1 bg-black">
       <View className="items-center justify-end relative mt-[] mb-[90]">
         <ImageCarousel results={screenshots?.results} />
         <Image
@@ -59,11 +59,17 @@ export default function GameDetails() {
                 }}
               >
                 <View
-                  className={`px-2 h-10 min-w-20 bg-white rounded-full items-center justify-center ${
-                    genres === item.id.toString() ? "bg-blue-500" : ""
+                  className={`px-2 h-12 min-w-24 rounded-full items-center justify-center border-2 border-white ${
+                    genres === item.id.toString() ? "bg-white" : "bg-black"
                   }`}
                 >
-                  <Text className="text-center text-sm font-semibold">
+                  <Text
+                    className={`text-center text-sm font-semibold ${
+                      genres === item.id.toString()
+                        ? "color-black"
+                        : "color-white"
+                    }`}
+                  >
                     {item.name}
                   </Text>
                 </View>
@@ -77,9 +83,12 @@ export default function GameDetails() {
         </View>
         <GameSection id={genres} name={genres} pathParameters="genres" />
 
-        <Text className="color-[#ccc] text-base pe-5">
-          {data?.description_raw}
-        </Text>
+        <View>
+          <Text className="color-white font-bold text-3xl mb-3">Saiba mais sobre {data?.name} </Text>
+          <Text className="color-[#ccc] text-base pe-5 mb-28" numberOfLines={2}>
+            {data?.description_raw}
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );

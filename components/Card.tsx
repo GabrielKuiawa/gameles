@@ -50,14 +50,7 @@ export default function Card({
       testID={`card-pressable-${id}`}
     >
       <Animated.View style={[styles.card, { transform: [{ scale }] }]}>
-        <Image
-          testID="card-image"
-          source={{ uri: image }}
-          style={styles.image}
-        />
-        <View style={styles.buttonStar}>
-          <Ionicons name="star" size={20} color="#fff" />
-        </View>
+        <Image testID="card-image" source={{ uri: image }} className="flex-1" />
         <LinearGradient
           colors={[
             "rgba(20,20,20,0.85)",
@@ -67,21 +60,21 @@ export default function Card({
           ]}
           start={{ x: 0, y: 1 }}
           end={{ x: 0, y: 0 }}
-          style={styles.gradientBottom}
+          className="absolute bottom-0 left-0 right-0 h-[80]"
         />
 
-        <View style={styles.infoContainer}>
-          <View style={styles.infoContainerTop}>
-            <View style={styles.infoDetails}>
-              <Ionicons name="star" size={13} color="#FFD700" />
-              <Text style={{ color: colors.accent, fontWeight: "bold" }}>
-                {rating}
-              </Text>
+        <View className="absolute bottom-0 h-16 w-full z-10">
+          <View className="items-center flex-row gap-2 ps-4">
+            <View className="items-center bg-black rounded color-white flex-row font-bold justify-center gap-1 px-2 min-w-14 text-center">
+              <Ionicons name="star" size={13} color="#fff" />
+              <Text className="text-white font-bold">{rating}</Text>
             </View>
-            <Text style={styles.infoDetails}>{year?.substring(0, 4)}</Text>
+            <Text className="items-center bg-black rounded color-white flex-row font-bold justify-center gap-1 px-2 min-w-14 text-center">
+              {year?.substring(0, 4)}
+            </Text>
           </View>
 
-          <Text style={styles.gameName}>{name}</Text>
+          <Text className="ps-5 color-white font-bold">{name}</Text>
         </View>
 
         {pressed && <View style={styles.grayOverlay} />}
@@ -89,8 +82,8 @@ export default function Card({
     </Pressable>
   );
 }
-const CARD_WIDTH = (width - 60) / 2;
-const CARD_HEIGHT = CARD_WIDTH * 1.4;
+const CARD_WIDTH = width / 1.5;
+const CARD_HEIGHT = CARD_WIDTH * 1.1;
 
 const styles = StyleSheet.create({
   card: {
@@ -98,63 +91,6 @@ const styles = StyleSheet.create({
     height: CARD_HEIGHT,
     borderRadius: 12,
     overflow: "hidden",
-    backgroundColor: "#181f2e",
-  },
-  buttonStar: {
-    alignItems: "center",
-    position: "absolute",
-    top: 10,
-    right: 10,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    borderRadius: 20,
-    padding: 5,
-    width: 40,
-    zIndex: 1,
-  },
-  gradientBottom: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 80,
-    zIndex: 1,
-  },
-  infoContainerTop: {
-    alignItems: "center",
-    flexDirection: "row",
-    gap: 5,
-    paddingStart: 17,
-  },
-  infoDetails: {
-    alignItems: "center",
-    backgroundColor: colors.primary,
-    borderRadius: 5,
-    color: colors.accent,
-    flexDirection: "row",
-    fontWeight: "bold",
-    justifyContent: "center",
-    gap: 2,
-    paddingBlock: 2,
-    width: 50,
-    textAlign: "center",
-  },
-  infoContainer: {
-    // backgroundColor: "red",
-    bottom: 0,
-    height: 65,
-    position: "absolute",
-    width: "100%",
-    zIndex: 2,
-  },
-  gameName: {
-    color: colors.white,
-    fontWeight: "bold",
-    paddingBottom: 15,
-    textAlign: "center",
-    width: "100%",
-  },
-  image: {
-    flex: 1,
   },
   grayOverlay: {
     ...StyleSheet.absoluteFillObject,

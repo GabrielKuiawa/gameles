@@ -7,12 +7,11 @@ import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 import Title from "./Title";
 import { useRef } from "react";
 
-export default function GameSection({ id, name , pathParameters}: Genre) {
+export default function GameSection({ id, name, pathParameters }: Genre) {
   const { data: allData, loadMore } = useInfiniteFetch<Genre>(
     `${API_URL}games?key=${API_KEY}&${pathParameters}=${id}&page_size=5`
   );
-  console.log(`${API_URL}games?key=${API_KEY}&${pathParameters}=${id}&page_size=5`);
-  
+
   const isNavigating = useRef(false);
   return (
     <View className="mb-8">
@@ -24,6 +23,7 @@ export default function GameSection({ id, name , pathParameters}: Genre) {
         horizontal
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
+        showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <Card
             id={parseInt(item.id)}

@@ -10,7 +10,7 @@ export default function Home() {
   );
   
   return (
-    <View className="bg-slate-900 ps-5 pt-5 h-full">
+    <View className="bg-black ps-5 pt-5 h-full">
       <FlatList
         data={allData}
         keyExtractor={(item) => item.id.toString()}

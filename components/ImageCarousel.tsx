@@ -15,15 +15,17 @@ export default function ImageCarousel({ results }: Screenshots) {
         duration: 1200,
         useNativeDriver: true,
       }).start(() => {
-        if (!isMounted) return;
+        requestAnimationFrame(() => {
+          if (!isMounted) return;
 
-        setIndex((prev) => (prev + 1) % (results?.length ?? 1));
+          setIndex((prev) => (prev + 1) % (results?.length ?? 1));
 
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: 1200,
-          useNativeDriver: true,
-        }).start();
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 1200,
+            useNativeDriver: true,
+          }).start();
+        });
       });
     }, 6000);
 
