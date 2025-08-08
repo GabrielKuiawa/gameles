@@ -16,6 +16,8 @@ import { Screenshots } from "@/types/Screenshots";
 import { useEffect, useState } from "react";
 import ImageCarousel from "@/components/ImageCarousel";
 import GameSection from "@/components/GameSection";
+import GameMediaSection from "@/components/GameMediaSection";
+import { Ionicons } from "@expo/vector-icons";
 
 type GameDetailsRouteProp = RouteProp<RootStackParamList, "GameDetails">;
 
@@ -35,6 +37,8 @@ export default function GameDetails() {
     }
   }, [data?.genres]);
 
+  console.log(`${API_URL}games/${id}?key=${API_KEY}`);
+
   return (
     <ScrollView className="flex-1 bg-black">
       <View className="items-center justify-end relative mt-[] mb-[90]">
@@ -46,9 +50,30 @@ export default function GameDetails() {
       </View>
 
       <View className="ps-5">
-        <Text className="color-white font-bold text-3xl mb-4 tracking-[1]">
-          {data?.name}
-        </Text>
+        <View>
+          <Text className="color-white font-bold text-3xl mb-1 tracking-[1]">
+            {data?.name}
+          </Text>
+          <Text className="color-red-500 font-semibold text-xl">
+            {data?.developers?.[0]?.name}
+          </Text>
+          <View className="flex-row items-center gap-1">
+            <Text className="color-white text-xl">{Number(data?.rating).toLocaleString()}</Text>
+            <Ionicons name="star-sharp" size={20} color="white"></Ionicons>
+          </View>
+        </View>
+        <GameMediaSection id={id} screenshots={screenshots ?? undefined} />
+        <View className="pt-5 mb-5">
+          <View className="justify-between flex-row pe-5">
+            <Text className="color-white font-bold text-3xl mb-3">
+              Sobre este jogo
+            </Text>
+            <Ionicons name="arrow-forward-circle" size={35} color="white" />
+          </View>
+          <Text className="color-[#ccc] text-base pe-5 mb-2" numberOfLines={2}>
+            {data?.description_raw}
+          </Text>
+        </View>
         <View className="flex-row items-center gap-2 mb-4">
           <FlatList
             data={data?.genres}
@@ -82,13 +107,6 @@ export default function GameDetails() {
           />
         </View>
         <GameSection id={genres} name={genres} pathParameters="genres" />
-
-        <View>
-          <Text className="color-white font-bold text-3xl mb-3">Saiba mais sobre {data?.name} </Text>
-          <Text className="color-[#ccc] text-base pe-5 mb-28" numberOfLines={2}>
-            {data?.description_raw}
-          </Text>
-        </View>
       </View>
     </ScrollView>
   );
