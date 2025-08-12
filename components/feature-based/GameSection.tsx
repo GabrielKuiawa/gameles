@@ -1,11 +1,13 @@
 import { View, StyleSheet, FlatList } from "react-native";
-import Card from "./Card";
+
 import { API_KEY, API_URL } from "@/env";
 import { Genre } from "@/types/Genres";
 import { router } from "expo-router";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
-import Title from "./Title";
+
 import { useRef } from "react";
+import Card from "./Card";
+import Title from "../shared/Title";
 
 export default function GameSection({ id, name, pathParameters }: Genre) {
   const { data: allData, loadMore } = useInfiniteFetch<Genre>(

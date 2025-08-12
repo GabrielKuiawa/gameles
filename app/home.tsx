@@ -1,8 +1,9 @@
 import { View, FlatList, ActivityIndicator } from "react-native";
-import GameSection from "@/components/GameSection";
+
 import { API_KEY, API_URL } from "@/env";
 import { Genre } from "@/types/Genres";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
+import GameSection from "@/components/feature-based/GameSection";
 
 export default function Home() {
   const { data: allData, loadMore,loading } = useInfiniteFetch<Genre>(
