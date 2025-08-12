@@ -18,6 +18,7 @@ import ImageCarousel from "@/components/ImageCarousel";
 import GameSection from "@/components/GameSection";
 import GameMediaSection from "@/components/GameMediaSection";
 import { Ionicons } from "@expo/vector-icons";
+import GameSectionReview from "@/components/GameSectionReview";
 
 type GameDetailsRouteProp = RouteProp<RootStackParamList, "GameDetails">;
 
@@ -50,18 +51,12 @@ export default function GameDetails() {
       </View>
 
       <View className="ps-5">
-        <View>
-          <Text className="color-white font-bold text-3xl mb-1 tracking-[1]">
-            {data?.name}
-          </Text>
-          <Text className="color-red-500 font-semibold text-xl">
-            {data?.developers?.[0]?.name}
-          </Text>
-          <View className="flex-row items-center gap-1">
-            <Text className="color-white text-xl">{Number(data?.rating).toLocaleString()}</Text>
-            <Ionicons name="star-sharp" size={20} color="white"></Ionicons>
-          </View>
-        </View>
+        <Text className="color-white font-bold text-3xl mb-1 tracking-[1]">
+          {data?.name}
+        </Text>
+        <Text className="color-orange-300 font-semibold text-xl">
+          {data?.developers?.[0]?.name}
+        </Text>
         <GameMediaSection id={id} screenshots={screenshots ?? undefined} />
         <View className="pt-5 mb-5">
           <View className="justify-between flex-row pe-5">
@@ -70,10 +65,13 @@ export default function GameDetails() {
             </Text>
             <Ionicons name="arrow-forward-circle" size={35} color="white" />
           </View>
-          <Text className="color-[#ccc] text-base pe-5 mb-2" numberOfLines={2}>
+          <Text className="color-[#ccc] text-base pe-5 mb-2" numberOfLines={4}>
             {data?.description_raw}
           </Text>
         </View>
+        
+        <GameSectionReview></GameSectionReview>
+
         <View className="flex-row items-center gap-2 mb-4">
           <FlatList
             data={data?.genres}
