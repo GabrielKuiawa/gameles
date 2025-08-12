@@ -4,6 +4,9 @@ import { Ionicons } from "@expo/vector-icons";
 import Stars from "../shared/Stars";
 import CardReview from "./CardReview";
 import ChartReview from "./ChartReview";
+import useFetch from "@/hooks/useFetch";
+import { API_KEY, API_URL } from "@/env";
+import { CardReviewProps } from "@/types/CardReviewProps";
 
 type GameSectionReviewProps = {
   id: number;
@@ -14,15 +17,23 @@ type GameSectionReviewProps = {
   }[];
 };
 
+type Review = {
+  results: CardReviewProps[];
+};
+
 export default function GameSectionReview(props: GameSectionReviewProps) {
   const ratings = props.ratings ?? [];
   const sortedRatings = [...ratings, { id: 2, percent: 0 }].sort(
     (a, b) => b.id - a.id
   );
-
   const maxPercent = Math.max(...sortedRatings.map((r) => r.percent));
+  const { data } = useFetch<Review>(
+    `${API_URL}games/${props.id}/reviews?key=${API_KEY}&page=2&page_size=3`
+  );
+  
+
   return (
-    <View className="mb-5">
+    <View className="mb-5 pe-5">
       <View className="justify-between flex-row pe-5">
         <Text className="color-white font-bold text-3xl mb-3">
           Notas e avaliações
@@ -42,12 +53,15 @@ export default function GameSectionReview(props: GameSectionReviewProps) {
         <ChartReview maxPercent={maxPercent} sortedRatings={sortedRatings} />
       </View>
       <View className="gap-5">
-        <CardReview
-          user={{ full_name: null, avatar: null }}
-          text="df"
-          rating={4}
-          create="22/34"
-        />
+        {data?.results.map((item) => (
+          <CardReview
+            key={item.id}
+            user={{ full_name: item.user?.full_name, avatar: item.user?.avatar }}
+            text={item.text}
+            rating={item.rating}
+            created={item.created}
+          />
+        ))}
       </View>
       <Text className="color-green-500 font-semibold mt-5">
         Ver todas as avaliações

@@ -1,16 +1,8 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
 import Stars from "../shared/Stars";
-
-type CardReviewProps = {
-  user?: {
-    full_name?: string | null;
-    avatar?: string | null;
-  };
-  text: string;
-  rating: number;
-  create: string;
-};
+import { CardReviewProps } from "@/types/CardReviewProps";
+import { formatDate } from "@/utils/formateDate";
 
 export default function CardReview(props: CardReviewProps) {
   return (
@@ -28,15 +20,17 @@ export default function CardReview(props: CardReviewProps) {
         )}
 
         <Text className="color-white text-2xl">
-          {props.user?.full_name ?? "anônimo"}
+          {props.user?.full_name?.trim() || "anônimo"}
         </Text>
       </View>
       <View className="flex-row gap-5 items-center">
         <Stars size={15} color="#22c55e" rating={props.rating} rating_top={5} />
 
-        <Text className="color-white">{props.create}</Text>
+        <Text className="color-white">{formatDate(props.created)}</Text>
       </View>
-      <Text className="color-white">{props.text}</Text>
+      <Text numberOfLines={3} className="color-white">
+        {props.text}
+      </Text>
     </View>
   );
 }
