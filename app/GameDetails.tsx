@@ -2,7 +2,6 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
   ScrollView,
   FlatList,
   Pressable,
@@ -70,8 +69,8 @@ export default function GameDetails() {
             {data?.description_raw}
           </Text>
         </View>
-        
-        <GameSectionReview></GameSectionReview>
+
+        <GameSectionReview id={id} ratings={data?.ratings} rating={data?.rating} />
 
         <View className="flex-row items-center gap-2 mb-4">
           <FlatList
