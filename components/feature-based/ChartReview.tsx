@@ -9,9 +9,7 @@ type ChartReviewProps = {
   }[];
 };
 
-export default function ChartReview(props: ChartReviewProps) {
-  console.log(props.sortedRatings.map((item) => {return {stars:item.id,count: item.percent}}));
-  
+export default function ChartReview(props: ChartReviewProps) {  
   return (
     <View className="w-60">
       {props.sortedRatings.map((item) => {
