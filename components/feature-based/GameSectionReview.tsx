@@ -34,7 +34,7 @@ export default function GameSectionReview(props: GameSectionReviewProps) {
 
   return (
     <View className="mb-5 pe-5">
-      <View className="justify-between flex-row pe-5">
+      <View className="justify-between flex-row">
         <Text className="color-white font-bold text-3xl mb-3">
           Notas e avaliações
         </Text>

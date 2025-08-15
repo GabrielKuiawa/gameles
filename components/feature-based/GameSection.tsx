@@ -6,8 +6,9 @@ import { router } from "expo-router";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 
 import { useRef } from "react";
-import Card from "./Card";
+
 import Title from "../shared/Title";
+import CardGame from "./CardGame";
 
 export default function GameSection({ id, name, pathParameters }: Genre) {
   const { data: allData, loadMore } = useInfiniteFetch<Genre>(
@@ -27,7 +28,7 @@ export default function GameSection({ id, name, pathParameters }: Genre) {
         onEndReachedThreshold={0.5}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
-          <Card
+          <CardGame
             id={parseInt(item.id)}
             image={item.background_image}
             name={item.name}

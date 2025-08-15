@@ -1,4 +1,4 @@
-export type CardProps = {
+export type CardGameProps = {
   image?: string;
   id: number;
   name: string;

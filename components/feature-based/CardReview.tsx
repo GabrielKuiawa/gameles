@@ -1,10 +1,13 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
+import { View, Text, Image, Pressable } from "react-native";
+import React, { useState } from "react";
 import Stars from "../shared/Stars";
 import { CardReviewProps } from "@/types/CardReviewProps";
 import { formatDate } from "@/utils/formateDate";
+import { cleanHTML } from "@/utils/cleanHtml";
 
 export default function CardReview(props: CardReviewProps) {
+  const [showFull, setShowFull] = useState(false);
+  const cleanedText = cleanHTML(props.text);
   return (
     <View className="gap-4">
       <View className="flex-row items-center gap-5">
@@ -28,9 +31,14 @@ export default function CardReview(props: CardReviewProps) {
 
         <Text className="color-white">{formatDate(props.created)}</Text>
       </View>
-      <Text numberOfLines={3} className="color-white">
-        {props.text}
-      </Text>
+      <Pressable onPress={() => setShowFull(!showFull)}>
+        <Text
+          numberOfLines={showFull ? undefined : 3}
+          className="color-[#ccc] text-base"
+        >
+          {cleanedText}
+        </Text>
+      </Pressable>
     </View>
   );
 }
