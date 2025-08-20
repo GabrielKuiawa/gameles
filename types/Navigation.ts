@@ -4,4 +4,7 @@ export type RootStackParamList = {
   GameDetails: {
     id: number;
   };
+  ReviewDetails : {
+    id:number;
+  }
 };

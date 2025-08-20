@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  FlatList,
-  Pressable,
-} from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "@/types/Navigation";
 import useFetch from "@/hooks/useFetch";
@@ -14,9 +7,7 @@ import { Game } from "@/types/Game";
 import { Screenshots } from "@/types/Screenshots";
 import { useEffect, useState } from "react";
 import ImageCarousel from "@/components/feature-based/ImageCarousel";
-
 import GameMediaSection from "@/components/feature-based/GameMediaSection";
-import { Ionicons } from "@expo/vector-icons";
 import GameSectionReview from "@/components/feature-based/GameSectionReview";
 import GameSection from "@/components/feature-based/GameSection";
 import Tabs from "@/components/shared/Tabs";

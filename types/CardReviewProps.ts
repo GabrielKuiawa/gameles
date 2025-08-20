@@ -1,5 +1,5 @@
 export type CardReviewProps = {
-  id?: number;
+  id: number;
   user?: {
     full_name?: string | null;
     avatar?: string | null;

@@ -14,7 +14,6 @@ export default function GameSection({ id, name, pathParameters }: Genre) {
   const { data: allData, loadMore } = useInfiniteFetch<Genre>(
     `${API_URL}games?key=${API_KEY}&${pathParameters}=${id}&page_size=5`
   );
-
   const isNavigating = useRef(false);
   return (
     <View className="mb-8">
