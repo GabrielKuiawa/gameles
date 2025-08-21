@@ -1,9 +1,9 @@
 import { View, Text, Image, Pressable } from "react-native";
 import React, { useState } from "react";
 import Stars from "../shared/Stars";
-import { CardReviewProps } from "@/types/CardReviewProps";
 import { formatDate } from "@/utils/formateDate";
 import { cleanHTML } from "@/utils/cleanHtml";
+import { CardReviewProps } from "@/types/props";
 
 export default function CardReview(props: CardReviewProps) {
   const [showFull, setShowFull] = useState(false);

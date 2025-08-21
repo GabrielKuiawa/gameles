@@ -1,21 +1,8 @@
-import {
-  View,
-  Pressable,
-  Animated,
-  StyleSheet,
-  StyleProp,
-  ViewStyle,
-} from "react-native";
+import { View, Pressable, Animated, StyleSheet } from "react-native";
 import React, { useRef, useState } from "react";
+import { CardProps } from "@/types/props";
 
-type CardProps = {
-  onPress?: () => void;
-  overlay?: boolean;
-  children: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
-};
-
-export default function Card({ onPress, children, overlay, style }: CardProps) {
+export default function Card(props: CardProps) {
   const scale = useRef(new Animated.Value(1)).current;
   const [pressed, setPressed] = useState(false);
 
@@ -30,10 +17,16 @@ export default function Card({ onPress, children, overlay, style }: CardProps) {
   };
 
   return (
-    <Pressable onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress}>
-      <Animated.View style={[styles.card, { transform: [{ scale }] }, style]}>
-        {children}
-        {pressed && overlay && <View style={styles.grayOverlay} />}
+    <Pressable
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      onPress={props.onPress}
+    >
+      <Animated.View
+        style={[styles.card, { transform: [{ scale }] }, props.style]}
+      >
+        {props.children}
+        {pressed && props.overlay && <View style={styles.grayOverlay} />}
       </Animated.View>
     </Pressable>
   );

@@ -1,15 +1,8 @@
 import { View, Text } from "react-native";
 import React from "react";
+import { ChartReviewProps } from "@/types/props";
 
-type ChartReviewProps = {
-  maxPercent: number;
-  sortedRatings:{
-    id: number;
-    percent: number;
-  }[];
-};
-
-export default function ChartReview(props: ChartReviewProps) {  
+export default function ChartReview(props: ChartReviewProps) {
   return (
     <View className="w-60">
       {props.sortedRatings.map((item) => {

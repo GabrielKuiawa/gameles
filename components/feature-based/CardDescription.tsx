@@ -1,12 +1,7 @@
-import { View, Text} from "react-native";
+import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Card from "../shared/Card";
-
-
-type CardDescriptionProps = {
-  description_raw?: string;
-  onPress?: () => void;
-};
+import { CardDescriptionProps } from "@/types/props";
 
 export default function CardDescription(props: CardDescriptionProps) {
   return (

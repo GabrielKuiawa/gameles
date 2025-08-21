@@ -8,8 +8,8 @@ import useFetch from "@/hooks/useFetch";
 import { API_KEY, API_URL } from "@/env";
 import Card from "../shared/Card";
 import { router } from "expo-router";
-import { GameSectionReviewProps, Review } from "@/types/Review";
-
+import { Review } from "@/types/models/Review";
+import { GameSectionReviewProps } from "@/types/props";
 
 export default function GameSectionReview(props: GameSectionReviewProps) {
   const ratings = props.ratings ?? [];

@@ -1,22 +1,19 @@
 import { View, Image, StyleSheet, Dimensions, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-import { CardGameProps } from "@/types/CardGameProps";
 import Card from "../shared/Card";
+import { CardGameProps } from "@/types/props";
 
 const { width } = Dimensions.get("window");
 
-export default function CardGame({
-  id,
-  image,
-  name,
-  year,
-  rating,
-  onPress,
-}: CardGameProps) {
+export default function CardGame(props: CardGameProps) {
   return (
-    <Card overlay={true} onPress={onPress} style={[styles.card]}>
-      <Image testID="card-image" source={{ uri: image }} className="flex-1" />
+    <Card overlay={true} onPress={props.onPress} style={[styles.card]}>
+      <Image
+        testID="card-image"
+        source={{ uri: props.background_image }}
+        className="flex-1"
+      />
       <LinearGradient
         colors={[
           "rgba(20,20,20,0.85)",
@@ -33,14 +30,14 @@ export default function CardGame({
         <View className="items-center flex-row gap-2 ps-4">
           <View className="items-center bg-black rounded color-white flex-row font-bold justify-center gap-1 px-2 min-w-14 text-center">
             <Ionicons name="star" size={13} color="#fff" />
-            <Text className="text-white font-bold">{rating}</Text>
+            <Text className="text-white font-bold">{props.rating}</Text>
           </View>
           <Text className="items-center bg-black rounded color-white flex-row font-bold justify-center gap-1 px-2 min-w-14 text-center">
-            {year?.substring(0, 4)}
+            {props.released?.toString()?.substring(0, 4)}
           </Text>
         </View>
 
-        <Text className="ps-5 color-white font-bold">{name}</Text>
+        <Text className="ps-5 color-white font-bold">{props.name}</Text>
       </View>
     </Card>
   );

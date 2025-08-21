@@ -1,24 +1,20 @@
-import { View, Text, ScrollView, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import React from "react";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 import { API_KEY, API_URL } from "@/env";
-import { Review } from "@/types/Review";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "@/types/Navigation";
+import { RootStackParamList } from "@/types/models/Navigation";
 import CardReview from "@/components/feature-based/CardReview";
-import { formatJson } from "@testing-library/react-native/build/helpers/format-element";
-import { CardReviewProps } from "@/types/CardReviewProps";
+import { ReviewItem } from "@/types/models/Review";
 
 type ReviewRouteProp = RouteProp<RootStackParamList, "ReviewDetails">;
 
 export default function ReviewDetails() {
   const route = useRoute<ReviewRouteProp>();
   const { id } = route.params;
-
-  const { data: allData, loadMore } = useInfiniteFetch<CardReviewProps>(
+  const { data: allData, loadMore } = useInfiniteFetch<ReviewItem>(
     `${API_URL}games/${id}/reviews?key=${API_KEY}&page_size=10`
   );
-//   console.log(formatJson(allData));
 
   return (
     <View className="flex-1 bg-black p-5">

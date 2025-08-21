@@ -1,16 +1,13 @@
-import { View, Text, StyleSheet, Button, Image, FlatList } from "react-native";
-import { GameMediaSectionProps } from "@/types/GameMediaSectionProps";
+import { View, StyleSheet, Image, FlatList } from "react-native";
 import useFetch from "@/hooks/useFetch";
 import { API_KEY, API_URL } from "@/env";
 import { useVideoPlayer, VideoView } from "expo-video";
-import { Movies } from "@/types/Movies";
+import { Movies } from "@/types/models/Movies";
+import { GameMediaSectionProps } from "@/types/props";
 
-export default function GameMediaSection({
-  id,
-  screenshots,
-}: GameMediaSectionProps) {
+export default function GameMediaSection(props: GameMediaSectionProps) {
   const { data, loading } = useFetch<Movies>(
-    `${API_URL}games/${id}/movies?key=${API_KEY}`
+    `${API_URL}games/${props.id}/movies?key=${API_KEY}`
   );
   const videoSource = Array.isArray(data?.results)
     ? data.results[0]?.data?.max
@@ -24,7 +21,7 @@ export default function GameMediaSection({
   return (
     <View className="py-4">
       <FlatList
-        data={screenshots?.results}
+        data={props.screenshots?.results}
         horizontal
         ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
         keyExtractor={(item) => item.id.toString()}

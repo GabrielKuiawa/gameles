@@ -1,7 +1,7 @@
 export type Game = {
   id: number;
-  name: string;
-  background_image: string;
+  name?: string;
+  background_image?: string;
   background_image_additional?: string;
   description_raw?: string;
   released?: number;

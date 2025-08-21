@@ -1,10 +1,10 @@
 import { View, Text, Image, ScrollView } from "react-native";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "@/types/Navigation";
+import { RootStackParamList } from "@/types/models/Navigation";
 import useFetch from "@/hooks/useFetch";
 import { API_KEY, API_URL } from "@/env";
-import { Game } from "@/types/Game";
-import { Screenshots } from "@/types/Screenshots";
+import { Game } from "@/types/models/Game";
+import { Screenshots } from "@/types/models/Screenshots";
 import { useEffect, useState } from "react";
 import ImageCarousel from "@/components/feature-based/ImageCarousel";
 import GameMediaSection from "@/components/feature-based/GameMediaSection";
@@ -65,7 +65,7 @@ export default function GameDetails() {
           onChangeGenre={(id) => setGenres(id)}
         />
 
-        <GameSection id={genres} name={genres} pathParameters="genres" />
+        <GameSection id={parseInt(genres)} pathParameters="genres" />
       </View>
     </ScrollView>
   );

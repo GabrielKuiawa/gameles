@@ -1,11 +1,6 @@
 import { View, Text, FlatList, Pressable } from "react-native";
 import React from "react";
-
-type TabsProps = {
-  data?: { genres?: { id: number; name: string }[] } | null;
-  genres: string;
-  onChangeGenre: (id: string) => void;
-};
+import { TabsProps } from "@/types/props";
 
 export default function Tabs(props: TabsProps) {
   return (
@@ -13,9 +8,7 @@ export default function Tabs(props: TabsProps) {
       <FlatList
         data={props.data?.genres}
         renderItem={({ item }) => (
-          <Pressable
-            onPress={() => props.onChangeGenre(item.id.toString())}
-          >
+          <Pressable onPress={() => props.onChangeGenre(item.id.toString())}>
             <View
               className={`px-2 h-12 min-w-24 rounded-full items-center justify-center border-2 border-white ${
                 props.genres === item.id.toString() ? "bg-white" : "bg-black"
@@ -41,4 +34,3 @@ export default function Tabs(props: TabsProps) {
     </View>
   );
 }
-

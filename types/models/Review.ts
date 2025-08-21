@@ -1,4 +1,8 @@
-export type CardReviewProps = {
+export type Review = {
+  results: ReviewItem[];
+};
+
+export type ReviewItem = {
   id: number;
   user?: {
     full_name?: string | null;

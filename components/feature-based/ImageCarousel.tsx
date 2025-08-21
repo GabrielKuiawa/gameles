@@ -1,8 +1,8 @@
 import { View, Animated } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
-import { Screenshots } from "@/types/Screenshots";
+import { ImageCarouselProps } from "@/types/props";
 
-export default function ImageCarousel({ results }: Screenshots) {
+export default function ImageCarousel(props: ImageCarouselProps) {
   const [index, setIndex] = useState(0);
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
@@ -18,7 +18,7 @@ export default function ImageCarousel({ results }: Screenshots) {
         requestAnimationFrame(() => {
           if (!isMounted) return;
 
-          setIndex((prev) => (prev + 1) % (results?.length ?? 1));
+          setIndex((prev) => (prev + 1) % (props.results?.length ?? 1));
 
           Animated.timing(fadeAnim, {
             toValue: 1,
@@ -33,12 +33,12 @@ export default function ImageCarousel({ results }: Screenshots) {
       isMounted = false;
       clearInterval(interval);
     };
-  }, [fadeAnim, results?.length]);
+  }, [fadeAnim, props.results?.length]);
 
   return (
     <View style={{ width: "100%", height: 320, overflow: "hidden" }}>
       <Animated.Image
-        source={{ uri: results?.[index]?.image }}
+        source={{ uri: props.results?.[index]?.image }}
         style={{
           width: "100%",
           height: "100%",

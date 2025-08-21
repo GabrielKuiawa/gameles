@@ -1,7 +1,6 @@
 import { View, FlatList, ActivityIndicator } from "react-native";
-
 import { API_KEY, API_URL } from "@/env";
-import { Genre } from "@/types/Genres";
+import { Genre } from "@/types/models/Genres";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 import GameSection from "@/components/feature-based/GameSection";
 
@@ -15,7 +14,7 @@ export default function Home() {
       <FlatList
         data={allData}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <GameSection id={item.id} name={item.name} pathParameters="genres" />}
+        renderItem={({ item }) => <GameSection id={item.id} pathParameters="genres" />}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
         contentContainerStyle={{ paddingBottom: 80 }}
