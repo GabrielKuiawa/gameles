@@ -12,6 +12,8 @@ import GameSectionReview from "@/components/feature-based/GameSectionReview";
 import GameSection from "@/components/feature-based/GameSection";
 import Tabs from "@/components/shared/Tabs";
 import CardDescription from "@/components/feature-based/CardDescription";
+import Card from "@/components/shared/Card";
+import { Ionicons } from "@expo/vector-icons";
 
 type GameDetailsRouteProp = RouteProp<RootStackParamList, "GameDetails">;
 
@@ -33,7 +35,10 @@ export default function GameDetails() {
 
   return (
     <ScrollView className="flex-1 bg-black">
-      <View className="items-center justify-end relative mt-[] mb-[90]">
+      <View className="items-center justify-end relative mb-[90]">
+        {/* <Card className="absolute top-[100] left-0">
+          <Ionicons name="arrow-back-circle" size={35} color="white" />
+        </Card> */}
         <ImageCarousel results={screenshots?.results} />
         <Image
           className="absolute bottom-[-70] w-[275] h-[275] rounded-[20]"
@@ -58,11 +63,10 @@ export default function GameDetails() {
           ratings={data?.ratings}
           rating={data?.rating}
         />
-
         <Tabs
-          data={data}
-          genres={genres}
-          onChangeGenre={(id) => setGenres(id)}
+          data={data?.genres?.map((g) => ({ id: g.id, label: g.name })) ?? []}
+          value={genres}
+          onChange={(id) => setGenres(id)}
         />
 
         <GameSection id={parseInt(genres)} pathParameters="genres" />

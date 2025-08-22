@@ -2,7 +2,7 @@ import { View, Pressable, Animated, StyleSheet } from "react-native";
 import React, { useRef, useState } from "react";
 import { CardProps } from "@/types/props";
 
-export default function Card(props: CardProps) {
+export default function Card(props: CardProps & { className?: string }) {
   const scale = useRef(new Animated.Value(1)).current;
   const [pressed, setPressed] = useState(false);
 
@@ -24,6 +24,7 @@ export default function Card(props: CardProps) {
     >
       <Animated.View
         style={[styles.card, { transform: [{ scale }] }, props.style]}
+        className={props.className}
       >
         {props.children}
         {pressed && props.overlay && <View style={styles.grayOverlay} />}

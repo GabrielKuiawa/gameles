@@ -58,7 +58,7 @@ export type StarsProps = {
 };
 
 export type TabsProps = {
-  data?: { genres?: { id: number; name: string }[] } | null;
-  genres: string;
-  onChangeGenre: (id: string) => void;
+  data?: { id: string | number; label: string }[] | null;
+  value: string;
+  onChange: (id: string) => void;
 };
