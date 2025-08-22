@@ -4,15 +4,14 @@ import useFetch from "@/hooks/useFetch";
 import { API_KEY, API_URL } from "@/env";
 import { Game } from "@/types/models/Game";
 import { Screenshots } from "@/types/models/Screenshots";
-import { useEffect, useState } from "react";
 import ImageCarousel from "@/components/feature-based/ImageCarousel";
 import GameMediaSection from "@/components/feature-based/GameMediaSection";
 import GameSectionReview from "@/components/feature-based/GameSectionReview";
 import GameSection from "@/components/feature-based/GameSection";
-import Tabs from "@/components/shared/Tabs";
 import CardDescription from "@/components/feature-based/CardDescription";
 import Card from "@/components/shared/Card";
 import { Ionicons } from "@expo/vector-icons";
+import TabsGeneric from "@/components/shared/TabsPropsGeneric";
 
 export default function GameDetails() {
   const route = useRoute();
@@ -22,13 +21,6 @@ export default function GameDetails() {
   const { data: screenshots } = useFetch<Screenshots>(
     `${API_URL}games/${id}/screenshots?key=${API_KEY}`
   );
-  let [genres, setGenres] = useState<string>("");
-
-  useEffect(() => {
-    if (data?.genres?.[0]?.name) {
-      setGenres(data.genres[0].id.toString());
-    }
-  }, [data?.genres]);
 
   return (
     <ScrollView className="flex-1 bg-black">
@@ -60,13 +52,15 @@ export default function GameDetails() {
           ratings={data?.ratings}
           rating={data?.rating}
         />
-        <Tabs
-          data={data?.genres?.map((g) => ({ id: g.id, label: g.name })) ?? []}
-          value={genres}
-          onChange={(id) => setGenres(id)}
+        
+        <TabsGeneric
+          data={data?.genres ?? []}
+          getId={(g) => g.id}
+          getLabel={(g) => g.name}
+          renderSection={(id) => (
+            <GameSection id={Number(id)} pathParameters="genres" />
+          )}
         />
-
-        <GameSection id={parseInt(genres)} pathParameters="genres" />
       </View>
     </ScrollView>
   );

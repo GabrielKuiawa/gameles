@@ -62,3 +62,12 @@ export type TabsProps = {
   value: string;
   onChange: (id: string) => void;
 };
+
+export type TabsPropsGeneric<T> = {
+  data: T[];
+  getId: (item: T) => string | number;
+  getLabel: (item: T) => string;
+  initialSelected?: string | number;
+  onChange?: (id: string | number) => void;
+  renderSection?: (selectedId: string | number) => React.ReactNode;
+};
