@@ -30,10 +30,7 @@ export default function GameSection(props: GameSectionProps) {
 
               isNavigating.current = true;
 
-              router.push({
-                pathname: "/GameDetails",
-                params: { id: item.id },
-              });
+              router.push(`/GameDetails/${item.id}`);
 
               setTimeout(() => {
                 isNavigating.current = false;

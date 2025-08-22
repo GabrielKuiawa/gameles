@@ -1,6 +1,5 @@
 import { View, Text, Image, ScrollView } from "react-native";
-import { RouteProp, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "@/types/models/Navigation";
+import { useRoute } from "@react-navigation/native";
 import useFetch from "@/hooks/useFetch";
 import { API_KEY, API_URL } from "@/env";
 import { Game } from "@/types/models/Game";
@@ -15,11 +14,9 @@ import CardDescription from "@/components/feature-based/CardDescription";
 import Card from "@/components/shared/Card";
 import { Ionicons } from "@expo/vector-icons";
 
-type GameDetailsRouteProp = RouteProp<RootStackParamList, "GameDetails">;
-
 export default function GameDetails() {
-  const route = useRoute<GameDetailsRouteProp>();
-  const { id } = route.params;
+  const route = useRoute();
+  const { id } = route.params as { id: number };
 
   const { data } = useFetch<Game>(`${API_URL}games/${id}?key=${API_KEY}`);
   const { data: screenshots } = useFetch<Screenshots>(

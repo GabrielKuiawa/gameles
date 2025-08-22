@@ -2,16 +2,13 @@ import { View, FlatList } from "react-native";
 import React from "react";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 import { API_KEY, API_URL } from "@/env";
-import { RouteProp, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "@/types/models/Navigation";
+import { useRoute } from "@react-navigation/native";
 import CardReview from "@/components/feature-based/CardReview";
 import { ReviewItem } from "@/types/models/Review";
 
-type ReviewRouteProp = RouteProp<RootStackParamList, "ReviewDetails">;
-
 export default function ReviewDetails() {
-  const route = useRoute<ReviewRouteProp>();
-  const { id } = route.params;
+  const route = useRoute();
+  const { id } = route.params as { id: number };
   const { data: allData, loadMore } = useInfiniteFetch<ReviewItem>(
     `${API_URL}games/${id}/reviews?key=${API_KEY}&page_size=10`
   );

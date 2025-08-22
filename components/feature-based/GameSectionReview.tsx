@@ -29,10 +29,8 @@ export default function GameSectionReview(props: GameSectionReviewProps) {
           if (isNavigating.current) return;
 
           isNavigating.current = true;
-          router.push({
-            pathname: "/ReviewDetails",
-            params: { id: String(props.id) },
-          });
+          router.push(`/GameDetails/ReviewDetails/${String(props.id)}`);
+
           setTimeout(() => {
             isNavigating.current = false;
           }, 1000);
@@ -80,10 +78,7 @@ export default function GameSectionReview(props: GameSectionReviewProps) {
           if (isNavigating.current) return;
 
           isNavigating.current = true;
-          router.push({
-            pathname: "/ReviewDetails",
-            params: { id: String(props.id) },
-          });
+          router.push(`/GameDetails/ReviewDetails/${String(props.id)}`);
           setTimeout(() => {
             isNavigating.current = false;
           }, 1000);

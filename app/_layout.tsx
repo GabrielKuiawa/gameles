@@ -5,7 +5,7 @@ import "../global.css";
 export default function Layout() {
   return (
     <SafeAreaView
-      style={{ flex: 1, backgroundColor: "#000" }}
+      style={{ flex: 1, backgroundColor: "#9ca3af" }}
       edges={["top", "left", "right", "bottom"]}
     >
       <Stack>
@@ -16,19 +16,19 @@ export default function Layout() {
           }}
         />
         <Stack.Screen
-          name="home"
+          name="home/index"
           options={{
             title: "Jogos",
           }}
         />
         <Stack.Screen
-          name="GameDetails"
+          name="GameDetails/[id]"
           options={{
             headerShown: false,
           }}
         />
         <Stack.Screen
-          name="ReviewDetails"
+          name="GameDetails/ReviewDetails/[id]"
           options={{
             headerShown: false,
           }}
