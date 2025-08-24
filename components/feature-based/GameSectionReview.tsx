@@ -1,5 +1,4 @@
 import { View, Text } from "react-native";
-import React, { useRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Stars from "../shared/Stars";
 import CardReview from "./CardReview";
@@ -7,9 +6,9 @@ import ChartReview from "./ChartReview";
 import useFetch from "@/hooks/useFetch";
 import { API_KEY, API_URL } from "@/env";
 import Card from "../shared/Card";
-import { router } from "expo-router";
 import { Review } from "@/types/models/Review";
 import { GameSectionReviewProps } from "@/types/props";
+import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 
 export default function GameSectionReview(props: GameSectionReviewProps) {
   const ratings = props.ratings ?? [];
@@ -20,20 +19,16 @@ export default function GameSectionReview(props: GameSectionReviewProps) {
   const { data } = useFetch<Review>(
     `${API_URL}games/${props.id}/reviews?key=${API_KEY}&page=2&page_size=3`
   );
-  const isNavigating = useRef(false);
+  const navigateTo = useSafeNavigation();
 
   return (
     <View className="mb-5 pe-5">
       <Card
         onPress={() => {
-          if (isNavigating.current) return;
-
-          isNavigating.current = true;
-          router.push(`/GameDetails/ReviewDetails/${String(props.id)}`);
-
-          setTimeout(() => {
-            isNavigating.current = false;
-          }, 1000);
+          navigateTo({
+            pathname: "/GameDetails/ReviewDetails/[id]",
+            params: { id: String(props.id) },
+          });
         }}
       >
         <View className="justify-between flex-row">
@@ -59,31 +54,11 @@ export default function GameSectionReview(props: GameSectionReviewProps) {
 
       <View className="gap-5">
         {data?.results.map((item) => (
-          <CardReview
-            id={item.id}
-            key={item.id}
-            user={{
-              full_name: item.user?.full_name,
-              avatar: item.user?.avatar,
-            }}
-            text={item.text}
-            rating={item.rating}
-            created={item.created}
-          />
+          <CardReview {...item} key={item.id} />
         ))}
       </View>
 
-      <Card
-        onPress={() => {
-          if (isNavigating.current) return;
-
-          isNavigating.current = true;
-          router.push(`/GameDetails/ReviewDetails/${String(props.id)}`);
-          setTimeout(() => {
-            isNavigating.current = false;
-          }, 1000);
-        }}
-      >
+      <Card onPress={() => {}}>
         <Text className="color-green-500 font-semibold mt-5">
           Ver todas as avaliações
         </Text>

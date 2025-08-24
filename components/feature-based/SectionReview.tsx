@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import React, { useMemo } from "react";
 import CardReview from "./CardReview";
 import { ReviewItem } from "@/types/models/Review";
@@ -31,19 +31,7 @@ export default function SectionReview({
         onEndReachedThreshold={0.1}
         showsHorizontalScrollIndicator={false}
         onEndReached={loadMore}
-        renderItem={({ item }) => (
-          <CardReview
-            id={item.id}
-            key={item.id}
-            user={{
-              full_name: item.user?.full_name,
-              avatar: item.user?.avatar,
-            }}
-            text={item.text}
-            rating={item.rating}
-            created={item.created}
-          />
-        )}
+        renderItem={({ item }) => <CardReview {...item} key={item.id} />}
       />
     </View>
   );
