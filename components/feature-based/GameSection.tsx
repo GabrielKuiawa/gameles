@@ -7,7 +7,7 @@ import { GameSectionProps } from "@/types/props";
 import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 
 export default function GameSection(props: GameSectionProps) {
-  const { data: allData, loadMore } = useInfiniteFetch<Game>(
+  const { data: allData, loadMore, loading } = useInfiniteFetch<Game>(
     `${API_URL}games?key=${API_KEY}&${props.pathParameters}=${props.id}&page_size=5`
   );
   const navigateTo = useSafeNavigation();

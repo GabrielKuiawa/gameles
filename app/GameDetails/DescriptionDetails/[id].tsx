@@ -18,8 +18,7 @@ export default function DescriptionDetails() {
         {paragraphs.map((para, index) => (
           <Text
             key={index}
-            className="text-white text-base leading-7"
-            style={{ textAlign: "justify", marginBottom: 12 }} 
+            className="text-white text-base leading-7 text-justify mb-5"
           >
             {para}
           </Text>

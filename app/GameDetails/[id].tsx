@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, ActivityIndicator } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import useFetch from "@/hooks/useFetch";
 import { API_KEY, API_URL } from "@/env";
@@ -15,14 +15,26 @@ import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 export default function GameDetails() {
   const route = useRoute();
   const { id } = route.params as { id: number };
-
-  const { data } = useFetch<Game>(`${API_URL}games/${id}?key=${API_KEY}`);
+  const { data, loading } = useFetch<Game>(
+    `${API_URL}games/${id}?key=${API_KEY}`
+  );
   const { data: screenshots } = useFetch<Screenshots>(
     `${API_URL}games/${id}/screenshots?key=${API_KEY}`
   );
+  
   const navigateTo = useSafeNavigation();
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-black">
+        <ActivityIndicator size="large" color="#fff" />
+      </View>
+    );
+  }
   return (
-    <ScrollView className="flex-1 bg-black">
+    <ScrollView
+      className="flex-1 bg-black"
+      showsVerticalScrollIndicator={false}
+    >
       <View className="items-center justify-end relative mb-[90]">
         <ImageCarousel results={screenshots?.results} />
         <Image

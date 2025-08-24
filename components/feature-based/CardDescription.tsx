@@ -13,7 +13,7 @@ export default function CardDescription(props: CardDescriptionProps) {
           </Text>
           <Ionicons name="arrow-forward-circle" size={35} color="white" />
         </View>
-        <Text className="color-[#ccc] text-base pe-5 mb-2" numberOfLines={4}>
+        <Text className="color-[#ccc] text-base pe-5 mb-2 text-justify" numberOfLines={4}>
           {props.description_raw}
         </Text>
       </View>

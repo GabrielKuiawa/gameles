@@ -1,4 +1,4 @@
-import { View, FlatList } from "react-native";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import React, { useMemo } from "react";
 import CardReview from "./CardReview";
 import { ReviewItem } from "@/types/models/Review";
@@ -12,7 +12,11 @@ export default function SectionReview({
   id: number;
   parameter: string | number;
 }) {
-  const { data: allData, loadMore } = useInfiniteFetch<ReviewItem>(
+  const {
+    data: allData,
+    loadMore,
+    loading,
+  } = useInfiniteFetch<ReviewItem>(
     `${API_URL}games/${id}/reviews?key=${API_KEY}&page_size=10`
   );
 
@@ -21,6 +25,14 @@ export default function SectionReview({
     if (rating === 0) return allData;
     return allData?.filter((r) => r.rating === rating);
   }, [allData, parameter]);
+
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-black">
+        <ActivityIndicator size="large" color="#fff" />
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1 bg-black">
