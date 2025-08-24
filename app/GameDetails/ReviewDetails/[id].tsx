@@ -6,14 +6,14 @@ import TabsGeneric from "@/components/shared/TabsPropsGeneric";
 
 export default function ReviewDetails() {
   const route = useRoute();
-  const { idGame } = route.params as { idGame: number };
+  const { id: idGame } = route.params as { id: number };
   const reviewsData = [
     { id: 0, name: "Todos" },
-    { id: 1, name: "5 ★" },
-    { id: 2, name: "4 ★" },
+    { id: 5, name: "5 ★" },
+    { id: 4, name: "4 ★" },
     { id: 3, name: "3 ★" },
-    { id: 4, name: "2 ★" },
-    { id: 5, name: "1 ★" },
+    // { id: 2, name: "2 ★" },
+    { id: 1, name: "1 ★" },
   ];
 
   return (
@@ -22,7 +22,7 @@ export default function ReviewDetails() {
         data={reviewsData}
         getId={(g) => g.id}
         getLabel={(g) => g.name}
-        renderSection={(id) => <SectionReview id={idGame} parameter={id}></SectionReview>}
+        renderSection={(id) => <SectionReview id={idGame} parameter={id} />}
       />
     </View>
   );

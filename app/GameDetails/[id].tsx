@@ -21,6 +21,7 @@ export default function GameDetails() {
   const { data: screenshots } = useFetch<Screenshots>(
     `${API_URL}games/${id}/screenshots?key=${API_KEY}`
   );
+  // console.log(id);
 
   return (
     <ScrollView className="flex-1 bg-black">
@@ -52,7 +53,7 @@ export default function GameDetails() {
           ratings={data?.ratings}
           rating={data?.rating}
         />
-        
+
         <TabsGeneric
           data={data?.genres ?? []}
           getId={(g) => g.id}

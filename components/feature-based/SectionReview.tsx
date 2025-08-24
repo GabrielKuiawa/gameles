@@ -1,5 +1,5 @@
 import { View, Text, FlatList } from "react-native";
-import React from "react";
+import React, { useMemo } from "react";
 import CardReview from "./CardReview";
 import { ReviewItem } from "@/types/models/Review";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
@@ -15,13 +15,12 @@ export default function SectionReview({
   const { data: allData, loadMore } = useInfiniteFetch<ReviewItem>(
     `${API_URL}games/${id}/reviews?key=${API_KEY}&page_size=10`
   );
-  const selectedRating = Number(parameter);
-  const filteredReviews =
-    selectedRating === 0
-      ? allData
-      : allData.filter((review) => review.rating === selectedRating);
 
-  //   console.log(`${API_URL}games/${id}/reviews?key=${API_KEY}&page_size=10`);
+  const filteredReviews = useMemo(() => {
+    const rating = Number(parameter);
+    if (rating === 0) return allData;
+    return allData?.filter((r) => r.rating === rating);
+  }, [allData, parameter]);
 
   return (
     <View className="flex-1 bg-black">
