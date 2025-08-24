@@ -9,9 +9,8 @@ import GameMediaSection from "@/components/feature-based/GameMediaSection";
 import GameSectionReview from "@/components/feature-based/GameSectionReview";
 import GameSection from "@/components/feature-based/GameSection";
 import CardDescription from "@/components/feature-based/CardDescription";
-import Card from "@/components/shared/Card";
-import { Ionicons } from "@expo/vector-icons";
 import TabsGeneric from "@/components/shared/TabsPropsGeneric";
+import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 
 export default function GameDetails() {
   const route = useRoute();
@@ -21,14 +20,10 @@ export default function GameDetails() {
   const { data: screenshots } = useFetch<Screenshots>(
     `${API_URL}games/${id}/screenshots?key=${API_KEY}`
   );
-  // console.log(id);
-
+  const navigateTo = useSafeNavigation();
   return (
     <ScrollView className="flex-1 bg-black">
       <View className="items-center justify-end relative mb-[90]">
-        {/* <Card className="absolute top-[100] left-0">
-          <Ionicons name="arrow-back-circle" size={35} color="white" />
-        </Card> */}
         <ImageCarousel results={screenshots?.results} />
         <Image
           className="absolute bottom-[-70] w-[275] h-[275] rounded-[20]"
@@ -46,7 +41,18 @@ export default function GameDetails() {
 
         <GameMediaSection id={id} screenshots={screenshots ?? undefined} />
 
-        <CardDescription description_raw={data?.description_raw} />
+        <CardDescription
+          onPress={() =>
+            navigateTo({
+              pathname: "/GameDetails/DescriptionDetails/[id]",
+              params: {
+                id: id,
+                description_raw: data?.description_raw,
+              },
+            })
+          }
+          description_raw={data?.description_raw}
+        />
 
         <GameSectionReview
           id={id}

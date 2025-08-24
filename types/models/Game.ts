@@ -4,6 +4,7 @@ export type Game = {
   background_image?: string;
   background_image_additional?: string;
   description_raw?: string;
+  description?: string;
   released?: number;
   developers?: [
     {

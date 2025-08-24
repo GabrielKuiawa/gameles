@@ -9,29 +9,19 @@ export default function Layout() {
       edges={["top", "left", "right", "bottom"]}
     >
       <Stack>
-        <Stack.Screen
-          name="index"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="home/index"
-          options={{
-            title: "Jogos",
-          }}
-        />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="home/index" options={{ title: "Jogos" }} />
         <Stack.Screen
           name="GameDetails/[id]"
-          options={{
-            headerShown: false,
-          }}
+          options={{ headerShown: false, title: "", headerTransparent: true }}
         />
         <Stack.Screen
           name="GameDetails/ReviewDetails/[id]"
-          options={{
-            headerShown: false,
-          }}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="GameDetails/DescriptionDetails/[id]"
+          options={{ headerShown: false }}
         />
       </Stack>
     </SafeAreaView>

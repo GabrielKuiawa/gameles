@@ -5,7 +5,7 @@ import { Screenshots } from "./models/Screenshots";
 
 export type CardDescriptionProps = {
   description_raw?: string;
-  onPress?: () => void;
+  onPress: () => void;
 };
 
 export type CardGameProps = Game & {
