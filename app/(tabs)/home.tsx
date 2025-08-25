@@ -1,8 +1,10 @@
-import { View, FlatList, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator, StatusBar } from "react-native";
 import { API_KEY, API_URL } from "@/env";
 import { Genre } from "@/types/models/Genres";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 import GameSection from "@/components/feature-based/GameSection";
+
+import LinearGradientTabs from "@/components/shared/LinearGradientTabs";
 
 export default function Home() {
   const {
@@ -12,7 +14,7 @@ export default function Home() {
   } = useInfiniteFetch<Genre>(`${API_URL}genres?key=${API_KEY}&page_size=5`);
 
   return (
-    <View className="bg-black ps-5 pt-5 h-full">
+    <View className="bg-black ps-5 h-full">
       <FlatList
         data={allData}
         keyExtractor={(item) => item.id.toString()}
@@ -23,9 +25,10 @@ export default function Home() {
         onEndReachedThreshold={0.5}
         contentContainerStyle={{ paddingBottom: 80 }}
         ListFooterComponent={
-          loading ? <ActivityIndicator size="small" color="#000" /> : null
+          loading ? <ActivityIndicator size="small" color="#fff" /> : null
         }
       />
+      <LinearGradientTabs />
     </View>
   );
 }

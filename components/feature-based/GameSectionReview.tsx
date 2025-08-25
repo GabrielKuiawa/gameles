@@ -58,7 +58,14 @@ export default function GameSectionReview(props: GameSectionReviewProps) {
         ))}
       </View>
 
-      <Card onPress={() => {}}>
+      <Card
+        onPress={() => {
+          navigateTo({
+            pathname: "/GameDetails/ReviewDetails/[id]",
+            params: { id: String(props.id) },
+          });
+        }}
+      >
         <Text className="color-green-500 font-semibold mt-5">
           Ver todas as avaliações
         </Text>

@@ -1,29 +1,19 @@
 import { Stack } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
 import "../global.css";
+import { StatusBar } from "react-native";
 
-export default function Layout() {
+
+export default function RootLayout() {
+  
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: "#9ca3af" }}
-      edges={["top", "left", "right", "bottom"]}
-    >
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="home/index" options={{ title: "Jogos" }} />
-        <Stack.Screen
-          name="GameDetails/[id]"
-          options={{ headerShown: false, title: "", headerTransparent: true }}
-        />
-        <Stack.Screen
-          name="GameDetails/ReviewDetails/[id]"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="GameDetails/DescriptionDetails/[id]"
-          options={{ headerShown: false }}
-        />
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#0a0f12" />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="GameDetails/[id]" />
+        <Stack.Screen name="GameDetails/ReviewDetails/[id]" />
+        <Stack.Screen name="GameDetails/DescriptionDetails/[id]" />
       </Stack>
-    </SafeAreaView>
+    </>
   );
 }
