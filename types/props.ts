@@ -71,3 +71,8 @@ export type TabsPropsGeneric<T> = {
   onChange?: (id: string | number) => void;
   renderSection?: (selectedId: string | number) => React.ReactNode;
 };
+
+export type SearchBarProps = {
+  placeholder?: string;
+  onChange?: (text: string) => void;
+};

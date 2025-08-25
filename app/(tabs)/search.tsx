@@ -1,21 +1,27 @@
-import { View, TextInput } from "react-native";
+import { View, TextInput, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useEffect, useState } from "react";
 import LinearGradientTabs from "@/components/shared/LinearGradientTabs";
+import { userEvent } from "@testing-library/react-native";
+import SearchBar from "@/components/shared/SearchBar";
 
 export default function Search() {
+  const [searchText, setSearchText] = useState("");
 
   return (
     <View className="flex-1 bg-black">
-      <View className="flex-row items-center bg-zinc-800 rounded-xl px-3 mb-4 me-5 mt-5 mx-5">
-        <Ionicons name="search" size={20} color="#fff" />
-        <TextInput
-          placeholder="Buscar por jogos, gêneros, etc."
-          placeholderTextColor="#888"
-          className="flex-1 text-white ml-2"
-        />
-        <Ionicons name="close-circle-outline" size={22} color="#fff" />
-      </View>
-     <LinearGradientTabs />
+      <SearchBar
+        placeholder="Buscar por jogos, gêneros, etc."
+        onChange={setSearchText}
+      />
+
+      {searchText.length > 0 && (
+        <Text className="text-white font-bold text-2xl mb-3 ms-5">
+          Resultados para "{searchText}"
+        </Text>
+      )}  
+
+      <LinearGradientTabs />
     </View>
   );
 }
