@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function library() {
   return (
-    <View>
+    <View className='flex-1 bg-black'>
       <Text>library</Text>
     </View>
   )
