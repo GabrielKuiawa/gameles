@@ -22,6 +22,8 @@ export default function GameDetails() {
     `${API_URL}games/${id}/screenshots?key=${API_KEY}`
   );
   
+  // console.log(`${API_URL}games/${id}?key=${API_KEY}`);
+  
   const navigateTo = useSafeNavigation();
   if (loading) {
     return (

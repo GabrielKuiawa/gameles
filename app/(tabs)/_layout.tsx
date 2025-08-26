@@ -1,39 +1,35 @@
 import { Tabs } from "expo-router";
-import { Feather, FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  Feather,
+  FontAwesome5,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import TabButton from "@/components/shared/TabButton";
 
 export default function TabsLayout() {
   return (
-    <SafeAreaView
-      edges={["top"]}
-      style={{ backgroundColor: "#0a0f12", flex: 1 }}
-    >
-      <Tabs
-        screenOptions={{
-          headerShown: false,
-          tabBarStyle: {
-            backgroundColor: "transparent",
-            position: "absolute",
-            borderTopWidth: 0,
-            elevation: 0,
-          },
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: "transparent",
+          position: "absolute",
+          borderTopWidth: 0,
+          elevation: 0,
+        },
 
-          tabBarActiveTintColor: "#1db954",
-          tabBarInactiveTintColor: "#fff",
-        }}
-      >
+        tabBarActiveTintColor: "#1db954",
+        tabBarInactiveTintColor: "#fff",
+      }}
+    >
       <Tabs.Screen
         name="home"
         options={{
           title: "Início",
           tabBarButton: (props) => <TabButton {...props} />,
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome5
-              name={"home"}
-              size={size}
-              color={color}
-            />
+            <FontAwesome5 name={"home"} size={size} color={color} />
           ),
         }}
       />
@@ -97,7 +93,6 @@ export default function TabsLayout() {
           ),
         }}
       />
-      </Tabs>
-    </SafeAreaView>
+    </Tabs>
   );
 }
