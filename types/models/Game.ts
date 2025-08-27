@@ -31,4 +31,8 @@ export type Game = {
     id: number;
     name: string;
   }[];
+  short_screenshots?: {
+    id: number;
+    image: string;
+  }[];
 };

@@ -8,13 +8,9 @@ import { Game } from "@/types/models/Game";
 import Card from "@/components/shared/Card";
 import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 
-type SearchResult = {
-  results: Game[];
-};
-
 export default function Search() {
   const [searchText, setSearchText] = useState("");
-  const { data, loading, error } = useFetch<SearchResult>(
+  const { data, loading, error } = useFetch<{ results: Game[] }>(
     searchText
       ? `${API_URL}games?key=${API_KEY}&page_size=20 5&search=${searchText.toLowerCase()}`
       : undefined
