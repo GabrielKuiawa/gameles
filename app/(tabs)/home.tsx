@@ -172,6 +172,22 @@ export default function Home() {
             </View>
           </View>
         )}
+        <View className="pe-5 gap-5 mb-5">
+          <View className="flex-row items-center mt-5 gap-5">
+            <Ionicons name="logo-playstation" color={"white"} size={50} />
+            <View className="flex-col gap-1">
+              <Text className="text-slate-500">Novos lançamentos para</Text>
+              <Text className="text-white font-bold text-2xl">
+                PlayStation 4
+              </Text>
+            </View>
+            {/* <Ionicons className="self-end" name="arrow-forward-circle" size={35} color="white" /> */}
+          </View>
+          <Image
+            className="w-full h-60 rounded-xl"
+            src="https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg"
+          />
+        </View>
         {allbest250 && (
           <View className="mt-3 pe-5 flex-col gap-4">
             <View className="flex-row justify-between items-center">
