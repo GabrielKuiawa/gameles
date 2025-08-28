@@ -31,8 +31,9 @@ export default function Home() {
     `${API_URL}games?key=${API_KEY}&dates=2025-06-01,2025-08-26&ordering=-added&page_size=10`
   );
 
-  const { data: allbest250 } = useFetch<{ results: Game[] }>();
+  const { data: allbest250 } = useFetch<{ results: Game[] }>(`${API_URL}games/lists/greatest?key=${API_KEY}&page_size=250`);
   const chunkedData = allbest250 ? chunkArray(allbest250.results, 3) : [];
+
 
   return (
     <View className="bg-black ps-5 h-full">
@@ -172,16 +173,91 @@ export default function Home() {
             </View>
           </View>
         )}
-        <View className="pe-5 gap-5 mb-5">
-          <View className="flex-row items-center mt-5 gap-5">
-            <Ionicons name="logo-playstation" color={"white"} size={50} />
-            <View className="flex-col gap-1">
-              <Text className="text-slate-500">Novos lançamentos para</Text>
-              <Text className="text-white font-bold text-2xl">
-                PlayStation 4
+        {allbest250 && (
+          <View className="mt-8 pe-5 flex-col gap-4">
+            <View className="flex-row justify-between items-center">
+              <Text className="text-white font-bold text-xl">
+                All time top 250 games
               </Text>
+              <Ionicons name="arrow-forward-circle" size={35} color="white" />
             </View>
-            {/* <Ionicons className="self-end" name="arrow-forward-circle" size={35} color="white" /> */}
+            <View className="">
+              <FlatList
+                data={chunkedData}
+                keyExtractor={(_, index) => index.toString()}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
+                renderItem={({ item }) => (
+                  <View className="flex-col">
+                    {item.map((game) => (
+                      <View
+                        key={game.id}
+                        className="flex-row items-center mb-4"
+                        style={{ width: 320 }}
+                      >
+                        <Image
+                          source={{
+                            uri:
+                              game.short_screenshots?.[1]?.image ??
+                              "https://i.pinimg.com/736x/75/c3/b2/75c3b2608ae934277e024cd1e0e70726.jpg",
+                          }}
+                          className="w-20 h-20 rounded-xl"
+                          resizeMode="cover"
+                        />
+                        <View className="flex-1 ms-4">
+                          <Text
+                            className="text-white font-semibold w-48"
+                            numberOfLines={1}
+                          >
+                            {game.name}
+                          </Text>
+                          <Text
+                            className="text-gray-300 text-sm mt-1 w-48"
+                            numberOfLines={2}
+                          >
+                            {game.platforms
+                              ?.map((p) => p.platform.name)
+                              .join(", ")}
+                          </Text>
+                          <Text
+                            className="color-gray-400 font-medium text-sm"
+                            numberOfLines={1}
+                          >
+                            {game.genres?.map((g) => g.name).join(", ")}
+                          </Text>
+                        </View>
+                        <View className="flex-row items-center gap-1">
+                          <Text className="text-white font-bold text-lg ">
+                            {game.rating}
+                          </Text>
+                          <Ionicons name="star" size={15} color={"#22c55e"} />
+                        </View>
+                      </View>
+                    ))}
+                  </View>
+                )}
+              />
+            </View>
+          </View>
+        )}
+        <View className="pe-5 gap-5">
+          <View className="flex-row items-center mt-5 gap-5 justify-between">
+            <View className="flex-row items-center gap-3">
+              <Ionicons name="logo-playstation" color={"white"} size={50} />
+              <View className="flex-col gap-1">
+                <Text className="text-slate-500">Novos lançamentos para</Text>
+                <Text className="text-white font-bold text-2xl">
+                  PlayStation 4
+                </Text>
+              </View>
+            </View>
+            <Ionicons
+              className="self-end"
+              name="arrow-forward-circle"
+              size={35}
+              color="white"
+            />
           </View>
           <Image
             className="w-full h-60 rounded-xl"
@@ -189,14 +265,14 @@ export default function Home() {
           />
         </View>
         {allbest250 && (
-          <View className="mt-3 pe-5 flex-col gap-4">
+          <View className="mt-8 pe-5 flex-col gap-4 mb-32">
             <View className="flex-row justify-between items-center">
               <Text className="text-white font-bold text-xl">
                 All time top 250 games
               </Text>
               <Ionicons name="arrow-forward-circle" size={35} color="white" />
             </View>
-            <View className="h-96">
+            <View className="">
               <FlatList
                 data={chunkedData}
                 keyExtractor={(_, index) => index.toString()}

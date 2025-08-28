@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, ScrollView } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-export default function () {
+export default function Favorites() {
   return (
-    <View className='flex-1 bg-black justify-center items-center'>
-     
+    <View className="flex-1 bg-black px-4 pt-10">
+      
     </View>
-  )
+  );
 }

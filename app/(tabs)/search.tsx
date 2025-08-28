@@ -7,6 +7,33 @@ import { API_KEY, API_URL } from "@/env";
 import { Game } from "@/types/models/Game";
 import Card from "@/components/shared/Card";
 import { useSafeNavigation } from "@/hooks/useSafeNavigation";
+import { Genre } from "@/types/models/Genres";
+import { Ionicons } from "@expo/vector-icons";
+
+type GenreIconMap = {
+  [key: string]: keyof typeof Ionicons.glyphMap;
+};
+
+const genreIcons: GenreIconMap = {
+  Action: "flash",
+  Indie: "aperture",
+  Adventure: "map",
+  RPG: "shield",
+  Strategy: "podium",
+  Casual: "happy",
+  Simulation: "construct",
+  Puzzle: "extension-puzzle",
+  Arcade: "game-controller",
+  Platformer: "walk",
+  "Massively Multiplayer": "people",
+  Racing: "car-sport",
+  Sports: "football",
+  Fighting: "hand-left",
+  Family: "home",
+  "Board Games": "dice",
+  Card: "albums",
+  Educational: "school",
+};
 
 export default function Search() {
   const [searchText, setSearchText] = useState("");
@@ -15,6 +42,18 @@ export default function Search() {
       ? `${API_URL}games?key=${API_KEY}&page_size=20 5&search=${searchText.toLowerCase()}`
       : undefined
   );
+
+  const { data: dataGenres } = useFetch<{ results: Genre[] }>(
+    `${API_URL}genres?key=${API_KEY}`
+  );
+  // console.log(`${API_URL}genres?key=${API_KEY}`);
+
+  let test: string = "";
+  dataGenres?.results.forEach((genre) => {
+    test += genre.name + ", ";
+  });
+  console.log(test);
+
   const navigateTo = useSafeNavigation();
 
   return (
@@ -38,12 +77,16 @@ export default function Search() {
                 keyExtractor={(item) => item.id.toString()}
                 ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
                 renderItem={({ item }) => (
-                  <Card overlay className="rounded-lg" onPress={() => {
-                    navigateTo({
-                      pathname: "/GameDetails/[id]",  
-                      params: { id: item.id },
-                    });
-                  }}>
+                  <Card
+                    overlay
+                    className="rounded-lg"
+                    onPress={() => {
+                      navigateTo({
+                        pathname: "/GameDetails/[id]",
+                        params: { id: item.id },
+                      });
+                    }}
+                  >
                     <View className="flex-row items-start">
                       <Image
                         source={{
@@ -77,6 +120,41 @@ export default function Search() {
               />
             )}
           </>
+        )}
+
+        {searchText.length === 0 && (
+          <FlatList
+            data={dataGenres?.results}
+            keyExtractor={(item) => item.id.toString()}
+            numColumns={2}
+            renderItem={({ item }) => (
+              <View key={item.id} className="w-1/2 h-40 mb-5 px-1">
+                <View className="flex-1 rounded-2xl overflow-hidden">
+                  <Image
+                    source={{ uri: item.image_background! }}
+                    className="absolute w-full h-full"
+                    resizeMode="cover"
+                  />
+
+                  <View className="absolute w-full h-full bg-black/50" />
+
+                  <View className="flex-row items-center h-full px-4">
+                    <Ionicons
+                      name={genreIcons[item.name] || "game-controller"}
+                      size={35}
+                      color="white"
+                    />
+                    <Text
+                      className="text-white font-bold text-lg ml-3 flex-shrink"
+                      numberOfLines={1}
+                    >
+                      {item.name}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            )}
+          />
         )}
       </View>
       <LinearGradientTabs />
