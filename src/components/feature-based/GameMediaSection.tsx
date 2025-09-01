@@ -1,8 +1,8 @@
 import { View, StyleSheet, Image, FlatList } from "react-native";
-import useFetch from "@/hooks/useFetch";
-import { API_KEY, API_URL } from "@/env";
 import { useVideoPlayer, VideoView } from "expo-video";
+import useFetch from "@/hooks/useFetch";
 import { Movies } from "@/types/models/Movies";
+import { API_KEY, API_URL } from "../../../env";
 import { GameMediaSectionProps } from "@/types/props";
 
 export default function GameMediaSection(props: GameMediaSectionProps) {

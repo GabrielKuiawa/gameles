@@ -1,9 +1,10 @@
 import { View, FlatList } from "react-native";
-import { API_KEY, API_URL } from "@/env";
-import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
+
 import CardGame from "./CardGame";
-import { Game } from "@/types/models/Game";
 import { GameSectionProps } from "@/types/props";
+import { Game } from "@/types/models/Game";
+import { API_KEY, API_URL } from "../../../env";
+import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 
 export default function GameSection(props: GameSectionProps) {

@@ -1,8 +1,8 @@
 import { View } from "react-native";
 import React from "react";
 import { useRoute } from "@react-navigation/native";
-import SectionReview from "@/components/feature-based/SectionReview";
 import TabsGeneric from "@/components/shared/TabsPropsGeneric";
+import SectionReview from "@/components/feature-based/SectionReview";
 
 export default function ReviewDetails() {
   const route = useRoute();

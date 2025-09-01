@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useFetch from "./useFetch";
-import { PaginatedResponse } from "@/types/models/PaginatedResponse";
+import { PaginatedResponse } from "@/src/types/models/PaginatedResponse";
 
 export function useInfiniteFetch<T>(initialUrl: string) {
   const [url, setUrl] = useState(initialUrl);

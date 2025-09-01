@@ -1,9 +1,10 @@
 import { View, FlatList, ActivityIndicator } from "react-native";
 import React, { useMemo } from "react";
 import CardReview from "./CardReview";
-import { ReviewItem } from "@/types/models/Review";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
-import { API_KEY, API_URL } from "@/env";
+import { ReviewItem } from "@/types/models/Review";
+import { API_KEY, API_URL } from "../../../env";
+
 
 export default function SectionReview({
   id,

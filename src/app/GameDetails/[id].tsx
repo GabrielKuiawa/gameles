@@ -1,16 +1,17 @@
 import { View, Text, Image, ScrollView, ActivityIndicator } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import useFetch from "@/hooks/useFetch";
-import { API_KEY, API_URL } from "@/env";
 import { Game } from "@/types/models/Game";
+import { API_KEY, API_URL } from "../../../env";
 import { Screenshots } from "@/types/models/Screenshots";
+import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 import ImageCarousel from "@/components/feature-based/ImageCarousel";
 import GameMediaSection from "@/components/feature-based/GameMediaSection";
-import GameSectionReview from "@/components/feature-based/GameSectionReview";
-import GameSection from "@/components/feature-based/GameSection";
 import CardDescription from "@/components/feature-based/CardDescription";
+import GameSectionReview from "@/components/feature-based/GameSectionReview";
 import TabsGeneric from "@/components/shared/TabsPropsGeneric";
-import { useSafeNavigation } from "@/hooks/useSafeNavigation";
+import GameSection from "@/components/feature-based/GameSection";
+
 
 export default function GameDetails() {
   const route = useRoute();

@@ -1,4 +1,4 @@
-import Card from "@/components/feature-based/CardGame";
+import Card from "@/src/components/feature-based/CardGame";
 import { fireEvent, render } from "@testing-library/react-native";
 
 // describe("<Card />", () => {

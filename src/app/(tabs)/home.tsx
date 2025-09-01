@@ -1,3 +1,5 @@
+import useFetch from "@/hooks/useFetch";
+import { Game } from "@/types/models/Game";
 import {
   View,
   FlatList,
@@ -5,19 +7,12 @@ import {
   StatusBar,
   Text,
   Image,
-  Dimensions,
   ScrollView,
 } from "react-native";
-import { API_KEY, API_URL } from "@/env";
-import { Genre } from "@/types/models/Genres";
-import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
-import GameSection from "@/components/feature-based/GameSection";
-
-import LinearGradientTabs from "@/components/shared/LinearGradientTabs";
-import useFetch from "@/hooks/useFetch";
-import { Game } from "@/types/models/Game";
+import { API_KEY, API_URL } from "../../../env";
 import { Ionicons } from "@expo/vector-icons";
-import { formatDate } from "@/utils/formateDate";
+import LinearGradientTabs from "@/components/shared/LinearGradientTabs";
+
 
 function chunkArray<T>(arr: T[], size: number): T[][] {
   return arr.reduce<T[][]>((acc, _, i) => {

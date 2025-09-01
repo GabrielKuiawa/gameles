@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 
 import { useRoute } from '@react-navigation/native';
-import GameDetails from '@/app/GameDetails/[id]';
+import GameDetails from '@/src/app/GameDetails/[id]';
 
 jest.mock('@react-navigation/native', () => ({
   ...jest.requireActual('@react-navigation/native'),

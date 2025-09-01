@@ -1,14 +1,15 @@
 import { View, Text, FlatList, ActivityIndicator, Image } from "react-native";
 import { useState } from "react";
-import LinearGradientTabs from "@/components/shared/LinearGradientTabs";
-import SearchBar from "@/components/shared/SearchBar";
-import useFetch from "@/hooks/useFetch";
-import { API_KEY, API_URL } from "@/env";
-import { Game } from "@/types/models/Game";
-import Card from "@/components/shared/Card";
-import { useSafeNavigation } from "@/hooks/useSafeNavigation";
-import { Genre } from "@/types/models/Genres";
+
 import { Ionicons } from "@expo/vector-icons";
+import useFetch from "@/hooks/useFetch";
+import { Game } from "@/types/models/Game";
+import { API_KEY, API_URL } from "../../../env";
+import { Genre } from "@/types/models/Genres";
+import { useSafeNavigation } from "@/hooks/useSafeNavigation";
+import SearchBar from "@/components/shared/SearchBar";
+import LinearGradientTabs from "@/components/shared/LinearGradientTabs";
+import Card from "@/components/shared/Card";
 
 type GenreIconMap = {
   [key: string]: keyof typeof Ionicons.glyphMap;

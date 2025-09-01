@@ -3,11 +3,11 @@ import { Ionicons } from "@expo/vector-icons";
 import Stars from "../shared/Stars";
 import CardReview from "./CardReview";
 import ChartReview from "./ChartReview";
-import useFetch from "@/hooks/useFetch";
-import { API_KEY, API_URL } from "@/env";
 import Card from "../shared/Card";
-import { Review } from "@/types/models/Review";
 import { GameSectionReviewProps } from "@/types/props";
+import { Review } from "@/types/models/Review";
+import { API_KEY, API_URL } from "../../../env";
+import useFetch from "@/hooks/useFetch";
 import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 
 export default function GameSectionReview(props: GameSectionReviewProps) {
