@@ -3,7 +3,6 @@ import { View, TextInput, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { SearchBarProps } from "@/types/props";
 
-
 export default function SearchBar(props: SearchBarProps) {
   const [searchText, setSearchText] = useState("");
 

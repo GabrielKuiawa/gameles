@@ -19,4 +19,14 @@ export const gameService = {
     const url = `${API_URL}games?key=${API_KEY}&${path}=${id}&page_size=${pageSize}`;
     return useInfiniteFetch<Game>(url);
   },
+
+  useGamesByDates(startDate: string, endDate: string, pageSize = 10) {
+    const url = `${API_URL}games?key=${API_KEY}&dates=${startDate},${endDate}&ordering=-added&page_size=${pageSize}`;
+    return useFetch<{ results: Game[] }>(url);
+  },
+
+  useBestGames(limit = 250) {
+    const url = `${API_URL}games/lists/greatest?key=${API_KEY}&page_size=${limit}`;
+    return useFetch<{ results: Game[] }>(url);
+  },
 };

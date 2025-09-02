@@ -17,7 +17,7 @@ export default function GameSectionReview(props: GameSectionReviewProps) {
   );
   const maxPercent = Math.max(...sortedRatings.map((r) => r.percent));
   const { data } = useFetch<Review>(
-    `${API_URL}games/${props.id}/reviews?key=${API_KEY}&page=2&page_size=3`
+    `${API_URL}games/${props.id}/reviews?key=${API_KEY}&page=1&page_size=3`
   );
   const navigateTo = useSafeNavigation();
 

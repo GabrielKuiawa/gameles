@@ -79,7 +79,7 @@ export type SearchBarProps = {
 
 export type HorizontalInfiniteListProps<T> = {
   data: T[];
-  loadMore: () => void;
+  loadMore?: () => void;
   renderItem: ListRenderItem<T>;
   keyExtractor: (item: T) => string;
   separatorWidth?: number;

@@ -4,7 +4,7 @@ import CardReview from "./CardReview";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 import { ReviewItem } from "@/types/models/Review";
 import { API_KEY, API_URL } from "../../../env";
-
+import LoadingScreen from "../shared/LoadingScreen";
 
 export default function SectionReview({
   id,
@@ -27,13 +27,7 @@ export default function SectionReview({
     return allData?.filter((r) => r.rating === rating);
   }, [allData, parameter]);
 
-  if (loading) {
-    return (
-      <View className="flex-1 justify-center items-center bg-black">
-        <ActivityIndicator size="large" color="#fff" />
-      </View>
-    );
-  }
+  if (loading) return <LoadingScreen />;
 
   return (
     <View className="flex-1 bg-black">
