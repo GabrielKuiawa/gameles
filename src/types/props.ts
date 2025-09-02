@@ -2,6 +2,7 @@ import { ListRenderItem, StyleProp, ViewStyle } from "react-native";
 import { Game } from "./models/Game";
 import { ReviewItem } from "./models/Review";
 import { Screenshots } from "./models/Screenshots";
+import { ReactNode } from "react";
 
 export type CardDescriptionProps = {
   description_raw?: string;
@@ -81,6 +82,22 @@ export type HorizontalInfiniteListProps<T> = {
   data: T[];
   loadMore?: () => void;
   renderItem: ListRenderItem<T>;
-  keyExtractor: (item: T) => string;
+  keyExtractor: (item: T, index: number) => string;
   separatorWidth?: number;
+};
+
+export type GameSectionListProps = {
+  title: string;
+  data: Game[][];
+  isCard?: boolean;
+  onPressCard?: (game: Game) => void;
+  icon?: ReactNode;
+};
+
+export type SectionCardProps = {
+  platformName: string;
+  subtitle?: string;
+  imageUri: string;
+  icon?: ReactNode;
+  onPressIcon?: () => void;
 };

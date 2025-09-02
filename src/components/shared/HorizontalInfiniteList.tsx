@@ -1,12 +1,12 @@
 import { View, FlatList } from "react-native";
-
 import { HorizontalInfiniteListProps } from "@/types/props";
+
 export default function HorizontalInfiniteList<T>(
   props: HorizontalInfiniteListProps<T>
 ) {
   return (
     <FlatList
-      data={props.data}
+      data={props.data ?? []}
       keyExtractor={props.keyExtractor}
       ItemSeparatorComponent={() => (
         <View style={{ width: props.separatorWidth ?? 10 }} />

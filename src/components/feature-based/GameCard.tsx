@@ -6,26 +6,33 @@ import Card from "../shared/Card";
 
 export default function GameCard({
   item,
+  isCard,
   onPress,
 }: {
   item: Game;
+  isCard?: boolean;
   onPress: () => void;
 }) {
   const screenshotUrl =
     item.short_screenshots?.[1]?.image ??
     "https://i.pinimg.com/736x/75/c3/b2/75c3b2608ae934277e024cd1e0e70726.jpg";
+  const cardClass = isCard
+    ? "h-72 w-96 rounded-xl overflow-hidden mt-5"
+    : "h-24 w-96 rounded-xl overflow-hidden";
 
   return (
-    <Card onPress={onPress} className="h-72 w-96 rounded-xl overflow-hidden mt-5">
-      <Image
-        source={{
-          uri:
-            item.background_image ??
-            "https://i.pinimg.com/736x/75/c3/b2/75c3b2608ae934277e024cd1e0e70726.jpg",
-        }}
-        className="w-full h-48 rounded-xl"
-        resizeMode="cover"
-      />
+    <Card overlay onPress={onPress} className={cardClass}>
+      {isCard && (
+        <Image
+          source={{
+            uri:
+              item.background_image ??
+              "https://i.pinimg.com/736x/75/c3/b2/75c3b2608ae934277e024cd1e0e70726.jpg",
+          }}
+          className="w-full h-48 rounded-xl"
+          resizeMode="cover"
+        />
+      )}
       <View className="flex-row items-center flex-1">
         <Image
           source={{ uri: screenshotUrl }}
