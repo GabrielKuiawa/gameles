@@ -1,4 +1,4 @@
-import { StyleProp, ViewStyle } from "react-native";
+import { ListRenderItem, StyleProp, ViewStyle } from "react-native";
 import { Game } from "./models/Game";
 import { ReviewItem } from "./models/Review";
 import { Screenshots } from "./models/Screenshots";
@@ -75,4 +75,12 @@ export type TabsPropsGeneric<T> = {
 export type SearchBarProps = {
   placeholder?: string;
   onChange?: (text: string) => void;
+};
+
+export type HorizontalInfiniteListProps<T> = {
+  data: T[];
+  loadMore: () => void;
+  renderItem: ListRenderItem<T>;
+  keyExtractor: (item: T) => string;
+  separatorWidth?: number;
 };

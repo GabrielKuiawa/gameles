@@ -18,7 +18,7 @@ export default function GameSection(props: GameSectionProps) {
         data={allData}
         keyExtractor={(item) => item.id.toString()}
         ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
-        horizontal
+        horizontal={true}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
         showsHorizontalScrollIndicator={false}

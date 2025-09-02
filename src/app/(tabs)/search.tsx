@@ -53,7 +53,7 @@ export default function Search() {
   dataGenres?.results.forEach((genre) => {
     test += genre.name + ", ";
   });
-  console.log(test);
+  // console.log(test);
 
   const navigateTo = useSafeNavigation();
 

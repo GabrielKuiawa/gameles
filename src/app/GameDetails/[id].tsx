@@ -9,9 +9,11 @@ import ImageCarousel from "@/components/feature-based/ImageCarousel";
 import GameMediaSection from "@/components/feature-based/GameMediaSection";
 import CardDescription from "@/components/feature-based/CardDescription";
 import GameSectionReview from "@/components/feature-based/GameSectionReview";
-import TabsGeneric from "@/components/shared/TabsPropsGeneric";
+import TabsGeneric from "@/components/shared/TabsGeneric";
 import GameSection from "@/components/feature-based/GameSection";
-
+import { gameService } from "@/service/gameService";
+import HorizontalInfiniteList from "@/components/shared/HorizontalInfiniteList";
+import CardGame from "@/components/feature-based/CardGame";
 
 export default function GameDetails() {
   const route = useRoute();
@@ -22,9 +24,9 @@ export default function GameDetails() {
   const { data: screenshots } = useFetch<Screenshots>(
     `${API_URL}games/${id}/screenshots?key=${API_KEY}`
   );
-  
-  // console.log(`${API_URL}games/${id}?key=${API_KEY}`);
-  
+
+  // const { data:horizontal, loadMore } = gameService.useGamesBy("genres", id);
+
   const navigateTo = useSafeNavigation();
   if (loading) {
     return (
@@ -80,7 +82,21 @@ export default function GameDetails() {
           getId={(g) => g.id}
           getLabel={(g) => g.name}
           renderSection={(id) => (
-            <GameSection id={Number(id)} pathParameters="genres" />
+            <HorizontalInfiniteList<Game>
+              {...gameService.useGamesBy("genres", id.toString())}
+              renderItem={({ item }) => (
+                <CardGame
+                  {...item}
+                  onPress={() =>
+                    navigateTo({
+                      pathname: "/GameDetails/[id]",
+                      params: { id: item.id },
+                    })
+                  }
+                />
+              )}
+              keyExtractor={(item) => item.id.toString()}
+            />
           )}
         />
       </View>
