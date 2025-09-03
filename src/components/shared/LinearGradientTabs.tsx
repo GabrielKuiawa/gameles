@@ -19,7 +19,7 @@ export default function LinearGradientTabs() {
         bottom: 0,
         left: 0,
         right: 0,
-        height: height * 0.25,
+        height: height * 0.1,
       }}
     />
   );

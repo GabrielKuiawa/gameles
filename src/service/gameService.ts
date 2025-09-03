@@ -3,6 +3,7 @@ import { Game } from "@/types/models/Game";
 import { useInfiniteFetch } from "@/hooks/useInfiniteFetch";
 import useFetch from "@/hooks/useFetch";
 import { Screenshots } from "@/types/models/Screenshots";
+import { Genre } from "@/types/models/Genres";
 
 export const gameService = {
   useGame(id: number) {
@@ -28,5 +29,17 @@ export const gameService = {
   useBestGames(limit = 250) {
     const url = `${API_URL}games/lists/greatest?key=${API_KEY}&page_size=${limit}`;
     return useFetch<{ results: Game[] }>(url);
+  },
+
+  useSearchGames(searchText: string | undefined, pageSize = 20) {
+    const url = searchText
+      ? `${API_URL}games?key=${API_KEY}&page_size=${pageSize}&search=${searchText.toLowerCase()}`
+      : undefined;
+    return useFetch<{ results: Game[] }>(url);
+  },
+
+  useGenres() {
+    const url = `${API_URL}genres?key=${API_KEY}&page_size=18`;
+    return useFetch<{ results: Genre[] }>(url);
   },
 };

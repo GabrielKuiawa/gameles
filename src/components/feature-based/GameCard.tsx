@@ -17,8 +17,8 @@ export default function GameCard({
     item.short_screenshots?.[1]?.image ??
     "https://i.pinimg.com/736x/75/c3/b2/75c3b2608ae934277e024cd1e0e70726.jpg";
   const cardClass = isCard
-    ? "h-72 w-96 rounded-xl overflow-hidden mt-5"
-    : "h-24 w-96 rounded-xl overflow-hidden";
+    ? "h-72 w-full rounded-xl overflow-hidden mt-5"
+    : "h-24 w-full rounded-xl overflow-hidden";
 
   return (
     <Card overlay onPress={onPress} className={cardClass}>

@@ -61,7 +61,7 @@ export default function GameDetails() {
           rating={game?.rating}
         />
 
-        <TabsGeneric
+        <TabsGeneric        
           data={game?.genres ?? []}
           getId={(g) => g.id}
           getLabel={(g) => g.name}

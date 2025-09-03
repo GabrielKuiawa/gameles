@@ -9,10 +9,6 @@ export type CardDescriptionProps = {
   onPress: () => void;
 };
 
-export type CardGameProps = Game & {
-  onPress: () => void;
-};
-
 export type CardProps = {
   onPress?: () => void;
   overlay?: boolean;

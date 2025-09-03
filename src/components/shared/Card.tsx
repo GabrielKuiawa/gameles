@@ -21,9 +21,10 @@ export default function Card(props: CardProps & { className?: string }) {
       onPressIn={onPressIn}
       onPressOut={onPressOut}
       onPress={props.onPress}
-    >
+      style={props.style}  
+      >
       <Animated.View
-        style={[styles.card, { transform: [{ scale }] }, props.style]}
+        style={[styles.card, { transform: [{ scale }] }]}
         className={props.className}
       >
         {props.children}
