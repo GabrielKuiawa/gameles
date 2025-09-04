@@ -11,7 +11,7 @@ export default function SearchBar(props: SearchBarProps) {
   }, [searchText]);
 
   return (
-    <View className="flex-row items-center bg-zinc-800 rounded-xl px-3 mb-4 mx-5 mt-5">
+    <View className="flex-row items-center bg-zinc-800 rounded-xl px-3 mb-4 mt-5">
       <Ionicons name="search" size={20} color="#fff" />
 
       <TextInput

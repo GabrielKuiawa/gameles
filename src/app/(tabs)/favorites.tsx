@@ -1,5 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View } from "react-native";
 
 export default function Favorites() {
   return (

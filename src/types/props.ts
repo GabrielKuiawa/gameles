@@ -3,6 +3,7 @@ import { Game } from "./models/Game";
 import { ReviewItem } from "./models/Review";
 import { Screenshots } from "./models/Screenshots";
 import { ReactNode } from "react";
+import { Genre } from "./models/Genres";
 
 export type CardDescriptionProps = {
   description_raw?: string;
@@ -97,3 +98,8 @@ export type SectionCardProps = {
   icon?: ReactNode;
   onPressIcon?: () => void;
 };
+
+export type SectionGenreProps = {
+  genres?: Genre[];
+};
+

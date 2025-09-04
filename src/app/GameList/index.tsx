@@ -6,6 +6,7 @@ import { Game } from "@/types/models/Game";
 import useFetch from "@/hooks/useFetch";
 import GameCard from "@/components/feature-based/GameCard";
 import { useSafeNavigation } from "@/hooks/useSafeNavigation";
+import LoadingScreen from "@/components/shared/LoadingScreen";
 
 export default function GameList() {
   const { title, service, genreId, url } = useLocalSearchParams<{
@@ -25,14 +26,12 @@ export default function GameList() {
     fetchHook = useFetch<{ results: Game[] }>(url);
   }
 
-  const { data, loading, error } = fetchHook ?? {};
+  const { data, loading } = fetchHook ?? {};
+  if (loading) return <LoadingScreen />;
 
   return (
     <View className="flex-1 bg-black p-4">
       <Text className="text-white text-xl font-bold mb-4">{title}</Text>
-
-      {loading && <Text className="text-white">Carregando...</Text>}
-      {error && <Text className="text-red-500">Erro ao carregar</Text>}
 
       {data && (
         <FlatList

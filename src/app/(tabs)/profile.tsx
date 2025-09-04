@@ -1,5 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View } from "react-native";
 
 export default function Profile() {
   return (
