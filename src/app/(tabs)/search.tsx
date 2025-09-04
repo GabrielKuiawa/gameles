@@ -1,13 +1,12 @@
 import { View, Text, FlatList, ActivityIndicator, Image } from "react-native";
 import { useState } from "react";
-
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeNavigation } from "@/hooks/useSafeNavigation";
+import { genreIcons } from "@/constants/genreIcons";
+import { gameService } from "@/service/gameService";
 import SearchBar from "@/components/shared/SearchBar";
 import LinearGradientTabs from "@/components/shared/LinearGradientTabs";
 import Card from "@/components/shared/Card";
-import { genreIcons } from "@/constants/genreIcons";
-import { gameService } from "@/service/gameService";
 import GameCard from "@/components/feature-based/GameCard";
 
 export default function Search() {
@@ -62,6 +61,16 @@ export default function Search() {
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
             renderItem={({ item }) => (
               <Card
+                onPress={() =>
+                  navigateTo({
+                    pathname: "/GameList",
+                    params: {
+                      title: `Jogos do Genêro ${item.name}`,
+                      service: "genre",
+                      genreId: item.id,
+                    },
+                  })
+                }
                 overlay={true}
                 style={{ width: "49%" }}
                 key={item.id}

@@ -17,7 +17,6 @@
     );
     const { data: best250Games } = gameService.useBestGames(15);
     const chunkedData = best250Games ? chunkArray(best250Games.results, 3) : [];
-
     const navigateTo = useSafeNavigation();
 
     return (

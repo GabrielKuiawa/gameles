@@ -1,5 +1,6 @@
-import { View, Text, Image, ScrollView, ActivityIndicator } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { useRoute } from "@react-navigation/native";
+import { gameService } from "@/service/gameService";
 import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 import ImageCarousel from "@/components/feature-based/ImageCarousel";
 import GameMediaSection from "@/components/feature-based/GameMediaSection";
@@ -7,7 +8,6 @@ import CardDescription from "@/components/feature-based/CardDescription";
 import GameSectionReview from "@/components/feature-based/GameSectionReview";
 import TabsGeneric from "@/components/shared/TabsGeneric";
 import GenreSection from "@/components/feature-based/GenreSection";
-import { gameService } from "@/service/gameService";
 import LoadingScreen from "@/components/shared/LoadingScreen";
 
 export default function GameDetails() {
@@ -61,7 +61,7 @@ export default function GameDetails() {
           rating={game?.rating}
         />
 
-        <TabsGeneric        
+        <TabsGeneric
           data={game?.genres ?? []}
           getId={(g) => g.id}
           getLabel={(g) => g.name}

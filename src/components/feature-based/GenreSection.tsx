@@ -1,11 +1,11 @@
-import React from "react";
-import GameCard from "./GameCard";
-import HorizontalInfiniteList from "../shared/HorizontalInfiniteList";
 import { Game } from "@/types/models/Game";
 import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 import { gameService } from "@/service/gameService";
 import { chunkArray } from "@/utils/utils";
 import { View } from "react-native";
+import React from "react";
+import GameCard from "./GameCard";
+import HorizontalInfiniteList from "../shared/HorizontalInfiniteList";
 
 export default function GenreSection({ id }: { id: number | string }) {
   const navigateTo = useSafeNavigation();

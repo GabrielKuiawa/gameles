@@ -42,4 +42,10 @@ export const gameService = {
     const url = `${API_URL}genres?key=${API_KEY}&page_size=18`;
     return useFetch<{ results: Genre[] }>(url);
   },
+
+  useGamesByGenre(genreId: number, pageSize: number = 20) {
+    return useFetch<{ results: Game[] }>(
+      `${API_URL}games?key=${API_KEY}&genres=${genreId}&page_size=${pageSize}`
+    );
+  },
 };
