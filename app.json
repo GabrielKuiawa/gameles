@@ -6,11 +6,6 @@
     "orientation": "portrait",
     "scheme": "gameles",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
-    "splash": {
-      "resizeMode": "contain",
-      "backgroundColor": "#000000"
-    },
     "backgroundColor": "#000000",
     "ios": {
       "supportsTablet": true
@@ -18,8 +13,7 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
+      }
     },
     "web": {
       "bundler": "metro",
@@ -32,6 +26,15 @@
         {
           "supportsBackgroundPlayback": true,
           "supportsPictureInPicture": true
+        }
+      ],
+      "expo-font",
+      "expo-web-browser",
+      [
+        "expo-splash-screen",
+        {
+          "resizeMode": "contain",
+          "backgroundColor": "#000000"
         }
       ]
     ],

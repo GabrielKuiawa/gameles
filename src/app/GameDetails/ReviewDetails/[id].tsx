@@ -1,12 +1,12 @@
 import { View } from "react-native";
 import React from "react";
-import { useRoute } from "@react-navigation/native";
+import { useLocalSearchParams } from "expo-router";
 import TabsGeneric from "@/components/shared/TabsGeneric";
 import SectionReview from "@/components/feature-based/SectionReview";
 
 export default function ReviewDetails() {
-  const route = useRoute();
-  const { id: idGame } = route.params as { id: number };
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const idGame = Number(id);
   const reviewsData = [
     { id: 0, name: "Todos" },
     { id: 5, name: "5 ★" },

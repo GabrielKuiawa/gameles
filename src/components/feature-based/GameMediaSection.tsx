@@ -31,7 +31,7 @@ export default function GameMediaSection(props: GameMediaSectionProps) {
             <VideoView
               style={[styles.midia, { marginRight: 10 }]}
               player={player}
-              allowsFullscreen={false}
+              fullscreenOptions={{ enable: false }}
               requiresLinearPlayback={false}
             />
           ) : null

@@ -49,13 +49,26 @@ git clone https://github.com/GabrielKuiawa/gameles.git
 
 2. Instale as dependências
 ```bash
-npm install
+npm ci
 ```
 
-3. Execute o projeto
+3. Crie o arquivo de ambiente e informe sua chave da API RAWG
 ```bash
-npx expo start
+cp .env.example .env
 ```
+
+Edite o arquivo `.env`:
+```env
+EXPO_PUBLIC_RAWG_API_KEY=sua_chave_da_api_rawg
+```
+
+4. Execute o projeto
+```bash
+npm start
+```
+
+Com o computador e o celular na mesma rede, leia o QR code exibido no
+terminal usando o Expo Go.
 
 ## Usuários de Teste
 

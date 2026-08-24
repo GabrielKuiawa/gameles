@@ -1,5 +1,5 @@
 import { View, Text, Image, ScrollView } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useLocalSearchParams } from "expo-router";
 import { gameService } from "@/service/gameService";
 import { useSafeNavigation } from "@/hooks/useSafeNavigation";
 import ImageCarousel from "@/components/feature-based/ImageCarousel";
@@ -11,8 +11,8 @@ import GenreSection from "@/components/feature-based/GenreSection";
 import LoadingScreen from "@/components/shared/LoadingScreen";
 
 export default function GameDetails() {
-  const route = useRoute();
-  const { id } = route.params as { id: number };
+  const { id: idParam } = useLocalSearchParams<{ id: string }>();
+  const id = Number(idParam);
   const { data: game, loading } = gameService.useGame(id);
   const { data: screenshots } = gameService.useGameScreenshots(id);
   const navigateTo = useSafeNavigation();

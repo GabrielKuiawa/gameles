@@ -1,13 +1,12 @@
 import { View, Text, ScrollView } from "react-native";
 import React from "react";
-import { useRoute } from "@react-navigation/native";
+import { useLocalSearchParams } from "expo-router";
 
 export default function DescriptionDetails() {
-  const route = useRoute();
-  const { id, description_raw } = route.params as {
-    id: number;
+  const { description_raw } = useLocalSearchParams<{
+    id: string;
     description_raw: string;
-  };
+  }>();
   const paragraphs = description_raw.split("\n").filter((p) => p.trim() !== "");
   return (
     <View className="flex-1 bg-black p-4">
